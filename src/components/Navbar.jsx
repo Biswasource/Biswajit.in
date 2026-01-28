@@ -124,45 +124,47 @@ export default function Profile() {
                 Components
               </a>
             </nav>
-            {darkMode ? (
-              <div className="relative flex items-center bg-zinc-800 border border-zinc-600 rounded-xl px-2">
-                <FaSearch className="absolute left-2 text-zinc-400 text-sm" />
-                <input
-                  type="text"
-                  placeholder="Ctrl K"
-                  className="pl-7 pr-2 py-1 text-xs sm:text-sm w-24 sm:w-28 bg-zinc-800 text-white placeholder-zinc-500 focus:outline-none rounded-xl title "
-                />
-              </div>
-            ) : (
-              <div className="relative flex items-center bg-gray-50 border border-zinc-600 rounded-xl px-2">
-                <FaSearch className="absolute left-2 text-zinc-400 text-sm" />
-                <input
-                  type="text"
-                  placeholder="Ctrl K"
-                  className="pl-7 pr-2 py-1 text-xs sm:text-sm w-24 sm:w-28 bg-gray-50 text-black placeholder-zinc-500 focus:outline-none rounded-xl title "
-                />
-              </div>
-            )}
+            <div className={`relative flex items-center group border transition-all duration-300 rounded-xl px-2 ${
+              darkMode 
+                ? "bg-zinc-900 border-zinc-800 focus-within:border-blue-500/50" 
+                : "bg-zinc-50 border-zinc-200 focus-within:border-blue-500/50"
+            }`}>
+              <FaSearch className={`absolute left-2.5 text-xs transition-colors ${
+                darkMode ? "text-zinc-500 group-focus-within:text-blue-500" : "text-zinc-400 group-focus-within:text-blue-500"
+              }`} />
+              <input
+                type="text"
+                placeholder="Ctrl K"
+                className={`pl-8 pr-2 py-1.5 text-xs sm:text-sm w-24 sm:w-32 bg-transparent focus:outline-none title transition-colors ${
+                  darkMode ? "text-white placeholder-zinc-600" : "text-zinc-900 placeholder-zinc-400"
+                }`}
+              />
+            </div>
 
             {/* GitHub */}
-            <button className="p-1 border rounded-full border-gray-700 cursor-pointer">
-              {darkMode ? (
-                <FaGithub className="text-white text-lg sm:text-xl " />
-              ) : (
-                <FaGithub className="text-black text-lg sm:text-xl " />
-              )}
-            </button>
+            <a 
+              href="https://github.com/Biswasource" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className={`p-2 border rounded-full transition-all duration-300 hover:scale-110 active:scale-95 ${
+                darkMode 
+                  ? "border-zinc-800 bg-zinc-900 text-white hover:border-zinc-700 hover:text-blue-400" 
+                  : "border-zinc-200 bg-white text-zinc-800 hover:border-zinc-300 hover:text-blue-600 shadow-sm"
+              }`}
+            >
+              <FaGithub className="text-lg" />
+            </a>
 
             {/* Dark Mode */}
             <button
-              className="p-1 border rounded-full border-gray-700 cursor-pointer"
               onClick={() => setDarkMode(!darkMode)}
+              className={`p-2 border rounded-full transition-all duration-300 hover:scale-110 active:scale-95 ${
+                darkMode 
+                  ? "border-zinc-800 bg-zinc-900 text-yellow-400 hover:border-zinc-700" 
+                  : "border-zinc-200 bg-white text-zinc-600 hover:border-zinc-300 hover:text-blue-600 shadow-sm"
+              }`}
             >
-              {darkMode ? (
-                <HiSun className="text-white text-xl" />
-              ) : (
-                <HiMoon className="text-black text-xl" />
-              )}
+              {darkMode ? <HiSun className="text-lg" /> : <HiMoon className="text-lg" />}
             </button>
 
             {/* Hamburger for mobile */}
