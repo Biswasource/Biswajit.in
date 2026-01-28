@@ -57,21 +57,7 @@ const AboutSocialLinks = ({ darkMode }) => {
       Node.js, Express, and MongoDB. I’m also exploring TypeScript, Next.js, and
       Supabase to push my development boundaries even further.
     </>,
-    <>
-      I’ve built several end-to-end products — from real-time applications to
-      complex management systems — including{" "}
-      <a
-        href="#"
-        className={`font-semibold underline underline-offset-3 ${
-          darkMode ? "text-white" : "text-black"
-        }`}
-      >
-        LearnX LMS
-      </a>
-      , a full-featured Learning Management System designed for educational
-      institutions to manage courses, track student progress, automate
-      attendance, and provide real-time analytics for teachers and admins.
-    </>,
+    
     <>
       I’m also passionate about open-source development and UI engineering,
       currently building{" "}
@@ -112,39 +98,7 @@ const AboutSocialLinks = ({ darkMode }) => {
         <div
           className={`grid grid-cols-1 sm:grid-cols-2 divide-y sm:divide-y-0 sm:divide-x rounded-xl overflow-hidden cursor-pointer cl`}
         >
-          {socials.map((s, i) => (
-            <a
-              key={i}
-              href={s.link}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="block"
-            >
-              <motion.div
-                className={`flex items-center gap-4 p-4 sm:p-6 transition cl ${
-                  darkMode
-                    ? "hover:bg-zinc-900 bg-black text-white"
-                    : "hover:bg-gray-50 bg-white text-black"
-                }`}
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: false, amount: 0.3 }}
-                custom={i}
-                variants={blurVariant}
-              >
-                <img
-                  src={s.img}
-                  alt={s.name}
-                  className="w-10 h-10 object-contain"
-                />
-                <div>
-                  <p className="font-semibold">{s.name}</p>
-                  <p className="text-sm">{s.user}</p>
-                </div>
-                <div className="ml-auto text-gray-400 text-lg">↗</div>
-              </motion.div>
-            </a>
-          ))}
+        
         </div>
 
         {/* About Section */}

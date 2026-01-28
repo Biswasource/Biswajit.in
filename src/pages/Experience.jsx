@@ -19,7 +19,7 @@ export default function Experience({ darkMode }) {
       company: "Hyperdigitech",
       logo: "./hbt.png",
       role: "Backend Developer",
-      duration: "01.2022 — 04.2023",
+      duration: "08.2025 — Present",
       description: [
         "Worked on multiple SaaS-based platforms, developing and maintaining scalable backend systems.",
         "Developed scalable RESTful APIs using Node.js and Express for salon operations.",
@@ -33,7 +33,7 @@ export default function Experience({ darkMode }) {
       company: "Freelancing",
       logo: "./tungtung.webp",
       role: "Full Stack Developer",
-      duration: "05.2023 — Present",
+      duration: "05.2025 — Present",
       description: [
         "Worked on multiple client projects, building responsive and interactive web applications.",
         "Delivered custom client solutions with optimized UI/UX and seamless API integrations.",
