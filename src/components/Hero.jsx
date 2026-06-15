@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import {
   SiTypescript,
   SiReact,
@@ -90,6 +90,21 @@ const Hero = ({ darkMode }) => {
   const [copied, setCopied] = useState(false);
   const email = "biswajit9348das@gmail.com";
   const [timeStr, setTimeStr] = useState("");
+  const [roleIndex, setRoleIndex] = useState(0);
+
+  const roles = [
+    "Fullstack Developer",
+    "Creating with code. Small details matter.",
+    "Mobile App Developer",
+    "Open Source contributor"
+  ];
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setRoleIndex((prev) => (prev + 1) % roles.length);
+    }, 2500);
+    return () => clearInterval(timer);
+  }, []);
 
   useEffect(() => {
     const updateTime = () => {
@@ -119,7 +134,7 @@ const Hero = ({ darkMode }) => {
   };
 
   return (
-    <section className={`w-full max-w-5xl md:px-14 px-5 mx-auto md:pt-20 pt-10 pb-6 font-['Inter',_sans-serif] ${darkMode ? "text-white" : "text-zinc-800"}`}>
+    <section className={`w-full max-w-5xl md:px-14 px-5 mx-auto md:pt-20 pt-16 font-['Inter',_sans-serif] ${darkMode ? "text-white" : "text-zinc-800"}`}>
       <div className="flex flex-col md:flex-row gap-8 md:gap-12 relative">
         <div className="hidden md:block w-8 mt-4">
 
@@ -135,7 +150,7 @@ const Hero = ({ darkMode }) => {
           <div className="flex items-center gap-5 mb-6">
             {/* Avatar */}
             <div className="relative flex-shrink-0">
-              <div className={`w-36 h-36 md:w-40 md:h-40 rounded-full overflow-hidden transition-colors ${darkMode ? "border-zinc-800 bg-zinc-900" : "border-zinc-100 bg-white"
+              <div className={`w-32 h-32 md:w-36 md:h-36 rounded-full overflow-hidden transition-colors ${darkMode ? "border-zinc-800 bg-zinc-900" : "border-zinc-100 bg-white"
                 }`}>
                 <img
                   src="/profile-white.png"
@@ -152,22 +167,27 @@ const Hero = ({ darkMode }) => {
                 initial={{ y: 20, opacity: 0, filter: "blur(6px)" }}
                 animate={{ y: 0, opacity: 1, filter: "blur(0px)" }}
                 transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1], delay: 0.1 }}
-                className={`text-[26px] md:text-[30px] font-bold tracking-tight leading-tight ${darkMode
+                className={`cl text-[26px] md:text-[30px] mt-16 font-bold tracking-tight leading-tight ${darkMode
                   ? "bg-gradient-to-r from-zinc-300 via-white to-zinc-300 text-transparent"
                   : "bg-gradient-to-r from-zinc-800 via-zinc-500 to-zinc-800 text-transparent"
                   } bg-[length:200%_auto] bg-clip-text animate-gradient-x`}
               >
                 Biswajit Das
               </motion.h1>
-              <motion.p
-                initial={{ opacity: 0, y: 8 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, ease: "easeOut", delay: 0.3 }}
-                className={`text-[13.5px] font-medium tracking-wide ${darkMode ? "text-zinc-500" : "text-zinc-500"
-                  }`}
-              >
-                Full Stack Developer
-              </motion.p>
+              <div className="h-6 -mt-1 flex items-center overflow-hidden">
+                <AnimatePresence mode="wait">
+                  <motion.p
+                    key={roleIndex}
+                    initial={{ opacity: 0, y: 8 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -8 }}
+                    transition={{ duration: 0.3, ease: "easeOut" }}
+                    className={`title text-[14px] mt-1 font-medium tracking-wide ${darkMode ? "text-zinc-300" : "text-zinc-900"}`}
+                  >
+                    {roles[roleIndex]}
+                  </motion.p>
+                </AnimatePresence>
+              </div>
               {/* Animated underline accent */}
               <motion.div
                 initial={{ scaleX: 0, opacity: 0 }}

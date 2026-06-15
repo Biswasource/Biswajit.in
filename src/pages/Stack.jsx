@@ -15,62 +15,87 @@ import motion from "../../public/motion.svg";
 import reactrouter from "../../public/react-router-light.svg";
 import git from "../../public/git.svg";
 
-const logos = [
-  { src: ExpressLogo, name: "Express" },
-  { src: JavaScript, name: "JavaScript" },
-  { src: MongoDB, name: "MongoDB" },
-  { src: Nodejs, name: "Node.js" },
-  { src: pgsql, name: "PostgreSQL" },
-  { src: python, name: "Python" },
-  { src: react, name: "React" },
-  { src: redux, name: "Redux" },
-  { src: tailwind, name: "Tailwind" },
-  { src: typescript, name: "TypeScript" },
-  { src: shadcn, name: "shadcn/UI" },
-  { src: radix, name: "Radix UI" },
-  { src: motion, name: "Framer Motion" },
-  { src: reactrouter, name: "React Router" },
-  { src: git, name: "Git" },
+const categories = [
+  {
+    number: "01",
+    label: "Languages",
+    items: [
+      { src: typescript, name: "TypeScript" },
+      { src: JavaScript, name: "JavaScript" },
+      { src: python, name: "Python" },
+    ],
+  },
+  {
+    number: "02",
+    label: "Frontend",
+    items: [
+      { src: react, name: "React" },
+      { src: tailwind, name: "Tailwind CSS" },
+      { src: shadcn, name: "shadcn/ui" },
+      { src: radix, name: "Radix UI" },
+      { src: motion, name: "Motion" },
+      { src: redux, name: "Redux" },
+      { src: reactrouter, name: "React Router" },
+    ],
+  },
+  {
+    number: "03",
+    label: "Backend & Database",
+    items: [
+      { src: Nodejs, name: "Node.js" },
+      { src: ExpressLogo, name: "Express" },
+      { src: pgsql, name: "PostgreSQL" },
+      { src: MongoDB, name: "MongoDB" },
+    ],
+  },
+  {
+    number: "04",
+    label: "Dev Tools",
+    items: [
+      { src: git, name: "Git" },
+    ],
+  },
 ];
+
+const Tag = ({ src, name, darkMode }) => (
+  <span
+    className={`title inline-flex items-center gap-2 px-3 py-1 rounded-lg border text-[13px] font-mono ${darkMode
+      ? "bg-zinc-900 text-zinc-300"
+      : "bg-white border-zinc-200 text-zinc-700"
+      }`}
+  >
+    <img src={src} alt={name} className="w-4 h-4 object-contain" />
+    {name}
+  </span>
+);
 
 function StackSection({ darkMode }) {
   return (
-    <section className="w-full flex flex-col items-center py-3 px-4 relative">
+    <section className="title w-full flex flex-col items-center py-2 px-4 relative">
       <div className="w-full max-w-3xl">
-        <h2
-          className={`text-3xl font-bold  text-left  ${
-            darkMode ? "text-white" : "text-black"
-          }`}
-        >
+        <h2 className={`text-3xl font-bold mb-2 ${darkMode ? "text-white" : "text-black"}`}>
           Stack
         </h2>
-      </div>
 
-      <div
-        className={`w-full max-w-3xl rounded-xl p-3 mt-2 backdrop-blur-sm ${
-          darkMode ? "bg-black/70" : "bg-white/70"
-        }`}
-      >
-        <div
-          className="grid grid-cols-6 sm:grid-cols-8 md:grid-cols-8 gap-4"
-          style={{ placeItems: "start" }}
-        >
-          {logos.map((logo, index) => (
-            <div key={index} className="relative group title text-white">
-              <img
-                src={logo.src}
-                alt={logo.name}
-                className="w-9 h-9 object-contain hover:scale-110 transition-transform duration-200 cursor-pointer text-white"
-              />
-              {/* Tooltip */}
-              <div
-                className={`absolute left-1/2 -top-8 transform -translate-x-1/2 
-                  text-xs rounded px-5 py-2 opacity-0 group-hover:opacity-100 
-                  transition-opacity duration-200 pointer-events-none z-10 ${
-                    darkMode ? "bg-gray-800 text-white" : "bg-black text-white"
-                  }`}
-              >
-                {logo.name}
+        <div className={`divide-y ${darkMode ? "" : ""}`}>
+          {categories.map((cat) => (
+            <div
+              key={cat.number}
+              className="flex flex-col sm:flex-row sm:items-start gap-3 py-5"
+            >
+              <div className="flex items-baseline gap-2 sm:w-48 flex-shrink-0">
+                <span className={`text-sm font-mono ${darkMode ? "text-zinc-600" : "text-zinc-400"} title`}>
+                  {cat.number}
+                </span>
+                <span className={`title text-base font-medium ${darkMode ? "text-zinc-200" : "text-zinc-800"} title`}>
+                  {cat.label}
+                </span>
+              </div>
+
+              <div className="flex flex-wrap gap-2.5 title">
+                {cat.items.map((item) => (
+                  <Tag key={item.name} src={item.src} name={item.name} darkMode={darkMode} />
+                ))}
               </div>
             </div>
           ))}
