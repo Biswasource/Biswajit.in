@@ -29,7 +29,7 @@ import { HiSun, HiMoon, HiMenu, HiX } from "react-icons/hi";
 export default function Profile() {
   const sentences = [
     "Freelancer",
-    "Backend Developer",
+    "Backend Developer & Designer",
     "Frontend Developer",
   ];
 
@@ -91,10 +91,28 @@ export default function Profile() {
         <div className="flex items-center justify-between w-full max-w-3xl py-3 px-4 sm:py-4 sm:px-8">
           {/* Logo */}
           <span
-            className={`font-bold text-2xl tracking-tight sm:text-3xl  ${darkMode ? "text-white" : "text-black"
-              }`}
+            className={`${darkMode ? "text-white" : "text-black"} flex items-center`}
           >
-            BD
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 240 120"
+              fill="currentColor"
+              className="h-6 w-auto sm:h-6"
+            >
+              {/* B */}
+              <rect x="0" y="0" width="20" height="120" />
+              <rect x="20" y="0" width="40" height="20" />
+              <rect x="20" y="50" width="40" height="20" />
+              <rect x="20" y="100" width="40" height="20" />
+              <rect x="60" y="20" width="20" height="30" />
+              <rect x="60" y="70" width="20" height="30" />
+
+              {/* D */}
+              <rect x="120" y="0" width="20" height="120" />
+              <rect x="140" y="0" width="40" height="20" />
+              <rect x="180" y="20" width="20" height="80" />
+              <rect x="140" y="100" width="40" height="20" />
+            </svg>
           </span>
 
           {/* Desktop Menu */}
