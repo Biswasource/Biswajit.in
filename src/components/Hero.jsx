@@ -1,42 +1,114 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import { 
-  SiTypescript, 
-  SiReact, 
-  SiNextdotjs, 
-  SiBun, 
-  SiMongodb 
+import {
+  SiTypescript,
+  SiReact,
+  SiNextdotjs,
+  SiBun,
+  SiMongodb
 } from "react-icons/si";
-import { 
-  FaGithub, 
-  FaLinkedin, 
-  FaYoutube, 
-  FaInstagram, 
+import {
+  FaGithub,
+  FaLinkedin,
+  FaYoutube,
+  FaInstagram,
   FaTwitter,
   FaEnvelope,
   FaFileAlt,
   FaPaperPlane,
-  FaPinterest
+  FaPinterest,
+  FaCode,
+  FaMapMarkerAlt,
+  FaRegClock,
+  FaLink,
+  FaBriefcase,
+  FaPhone,
+  FaMars,
+  FaQuestion
 } from "react-icons/fa";
 import { RiTwitterXFill, RiThreadsFill } from "react-icons/ri";
 import { FaBolt } from "react-icons/fa";
 
 const SkillTag = ({ icon, name, darkMode }) => (
-  <span 
-    className={`inline-flex items-center gap-1.5 px-2 py-1 rounded-lg border-2 border-dotted text-[13px] font-bold transition-colors ${
-      darkMode 
-        ? "bg-zinc-900 border-zinc-700 text-zinc-300" 
-        : "bg-zinc-100/50 border-zinc-300 text-zinc-800"
-    }`}
+  <span
+    className={`inline-flex items-center gap-1.5 px-2 py-1 rounded-lg border-2 border-dotted text-[13px] font-bold transition-colors ${darkMode
+      ? "bg-zinc-900 border-zinc-700 text-zinc-300"
+      : "bg-zinc-100/50 border-zinc-300 text-zinc-800"
+      }`}
   >
     <span className="scale-90">{icon}</span>
     {name}
   </span>
 );
 
+const InfoItem = ({ icon, text, darkMode, className, href }) => {
+  const inner = (
+    <>
+      <div className={`flex-shrink-0 flex items-center justify-center w-7 h-7 rounded-md border transition-colors ${darkMode ? "bg-zinc-900 border-zinc-800 text-white group-hover:border-zinc-700" : "bg-zinc-50 border-zinc-200 text-black group-hover:border-zinc-300"}`}>
+        {icon}
+      </div>
+      <span className={`relative inline-block text-[13px] tracking-tight truncate ${darkMode ? "text-white" : "text-black"} ${className || "font-mono"}`}>
+        {text}
+        {href && (
+          <span className="absolute -bottom-0.5 left-0 w-full h-[1px] bg-current origin-left scale-x-0 transition-transform duration-300 ease-out group-hover:scale-x-100" />
+        )}
+      </span>
+    </>
+  );
+
+  if (href) {
+    return (
+      <a href={href} target={href.startsWith("mailto:") ? undefined : "_blank"} rel="noopener noreferrer" className="flex items-center gap-3 w-full group cursor-pointer">
+        {inner}
+      </a>
+    );
+  }
+
+  return (
+    <div className="flex items-center gap-3 w-full">
+      {inner}
+    </div>
+  );
+};
+
+const SocialButton = ({ href, icon, darkMode, onClick }) => (
+  <a
+    href={href}
+    target="_blank"
+    rel="noopener noreferrer"
+    onClick={onClick}
+    className={`flex items-center justify-center w-9 h-9 rounded-md border transition-all hover:scale-105 ${darkMode
+      ? "bg-zinc-900 border-zinc-800 text-zinc-400 hover:text-white hover:border-zinc-700 hover:bg-zinc-800"
+      : "bg-zinc-50 border-zinc-200 text-zinc-500 hover:text-black hover:border-zinc-300 hover:bg-zinc-100"
+      }`}
+  >
+    {icon}
+  </a>
+);
+
 const Hero = ({ darkMode }) => {
   const [copied, setCopied] = useState(false);
   const email = "biswajit9348das@gmail.com";
+  const [timeStr, setTimeStr] = useState("");
+
+  useEffect(() => {
+    const updateTime = () => {
+      const now = new Date();
+      const options = {
+        timeZone: "Asia/Kolkata", // For Cuttack, Odisha
+        hour: '2-digit',
+        minute: '2-digit',
+        second: '2-digit',
+        hour12: true
+      };
+      const formatted = new Intl.DateTimeFormat('en-US', options).format(now);
+      setTimeStr(`${formatted} (IST)`);
+    };
+
+    updateTime();
+    const interval = setInterval(updateTime, 1000);
+    return () => clearInterval(interval);
+  }, []);
 
   const handleCopyEmail = (e) => {
     // We still allow the default mailto behavior if they want, 
@@ -47,153 +119,133 @@ const Hero = ({ darkMode }) => {
   };
 
   return (
-    <section className={`w-full max-w-5xl md:px-14 px-10 mx-auto md:pt-20 pt-10 pb-12 font-['Inter',_sans-serif] ${darkMode ? "text-white" : "text-zinc-800"}`}>
+    <section className={`w-full max-w-5xl md:px-14 px-5 mx-auto md:pt-20 pt-10 pb-6 font-['Inter',_sans-serif] ${darkMode ? "text-white" : "text-zinc-800"}`}>
       <div className="flex flex-col md:flex-row gap-8 md:gap-12 relative">
         <div className="hidden md:block w-8 mt-4">
-          
+
         </div>
 
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0, filter: "blur(10px)", y: 20 }}
           animate={{ opacity: 1, filter: "blur(0px)", y: 0 }}
           transition={{ duration: 0.8, ease: "easeOut" }}
           className="flex-1"
         >
-          <div className="mb-6">
-            <div className="relative inline-block">
-              <div className={`w-24 h-24 md:w-28 md:h-28 rounded-3xl overflow-hidden border-2 shadow-sm transition-colors ${
-                darkMode ? "border-zinc-800 bg-zinc-900" : "border-zinc-100 bg-white"
-              }`}>
-                <img 
-                  src="/profile-white.png" 
-                  alt="Biswajit Das" 
+          {/* ── Avatar + Name row ── */}
+          <div className="flex items-center gap-5 mb-6">
+            {/* Avatar */}
+            <div className="relative flex-shrink-0">
+              <div className={`w-36 h-36 md:w-40 md:h-40 rounded-full overflow-hidden transition-colors ${darkMode ? "border-zinc-800 bg-zinc-900" : "border-zinc-100 bg-white"
+                }`}>
+                <img
+                  src="/profile-white.png"
+                  alt="Biswajit Das"
                   className="w-full h-full object-cover"
                 />
               </div>
-              <motion.div 
-                animate={{ 
-                  scale: [1, 1.15, 1],
-                }}
-                transition={{ 
-                  duration: 2,
-                  repeat: Infinity,
-                  ease: "easeInOut"
-                }}
-                className={`absolute -bottom-1 -right-1 rounded-full p-1.5 shadow-lg border flex items-center justify-center z-10 transition-colors ${
-                  darkMode ? "bg-zinc-900 border-zinc-800" : "bg-white border-zinc-100"
-                }`}
+
+            </div>
+
+            {/* Name + subtitle */}
+            <div className="flex flex-col gap-1">
+              <motion.h1
+                initial={{ y: 20, opacity: 0, filter: "blur(6px)" }}
+                animate={{ y: 0, opacity: 1, filter: "blur(0px)" }}
+                transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1], delay: 0.1 }}
+                className={`text-[26px] md:text-[30px] font-bold tracking-tight leading-tight ${darkMode
+                  ? "bg-gradient-to-r from-zinc-300 via-white to-zinc-300 text-transparent"
+                  : "bg-gradient-to-r from-zinc-800 via-zinc-500 to-zinc-800 text-transparent"
+                  } bg-[length:200%_auto] bg-clip-text animate-gradient-x`}
               >
-                <FaBolt className="text-emerald-500 text-sm" />
-              </motion.div>
+                Biswajit Das
+              </motion.h1>
+              <motion.p
+                initial={{ opacity: 0, y: 8 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, ease: "easeOut", delay: 0.3 }}
+                className={`text-[13.5px] font-medium tracking-wide ${darkMode ? "text-zinc-500" : "text-zinc-500"
+                  }`}
+              >
+                Full Stack Developer
+              </motion.p>
+              {/* Animated underline accent */}
+              <motion.div
+                initial={{ scaleX: 0, opacity: 0 }}
+                animate={{ scaleX: 1, opacity: 1 }}
+                transition={{ duration: 0.55, ease: "easeOut", delay: 0.55 }}
+                style={{ originX: 0 }}
+                className={`h-[2px] w-10 rounded-full ${darkMode ? "bg-zinc-600" : "bg-zinc-300"}`}
+              />
             </div>
           </div>
 
-          <div className="mb-4 overflow-hidden">
-            <motion.h1 
-              initial={{ x: -20, opacity: 0 }}
-              animate={{ x: 0, opacity: 1 }}
-              transition={{ duration: 0.8, ease: "easeOut" }}
-              className={`text-[32px] md:text-[38px] font-bold tracking-tight leading-tight shrink-0 ${
-                darkMode 
-                  ? "bg-gradient-to-r from-zinc-300 via-white to-zinc-300 text-transparent" 
-                  : "bg-gradient-to-r from-zinc-800 via-zinc-400 to-zinc-800 text-transparent"
-              } bg-[length:200%_auto] bg-clip-text animate-gradient-x`}
-            >
-              Hi, I'm Biswa — A Full Stack Developer.
-            </motion.h1>
-          </div>
-
-          <motion.div 
+          {/* ── Bio / skills ── */}
+          <motion.div
             variants={{
               hidden: { opacity: 0 },
               visible: {
                 opacity: 1,
-                transition: {
-                  staggerChildren: 0.2,
-                  delayChildren: 0.4
-                }
+                transition: { staggerChildren: 0.12, delayChildren: 0.55 }
               }
             }}
             initial="hidden"
             animate="visible"
-            className={`li text-[16px] md:text-[16px] leading-[1.3] space-y-2 ${darkMode ? "text-zinc-400" : "text-zinc-500"}`}
+            className={`text-[15px] md:text-[15.5px] leading-[1.75] space-y-3 ${darkMode ? "text-zinc-400" : "text-zinc-500"
+              }`}
           >
-            <motion.div 
-              variants={{
-                hidden: { opacity: 0, x: -10, filter: "blur(4px)" },
-                visible: { opacity: 1, x: 0, filter: "blur(0px)" }
-              }}
-              className="flex flex-wrap items-center gap-x-1.5 gap-y-1"
-            >
-              <span>I build interactive web apps using</span>
-              <SkillTag name="Typescript" icon={<SiTypescript className="text-blue-500" />} darkMode={darkMode} />
-              <span>,</span>
-              <SkillTag name="React" icon={<SiReact className="text-cyan-400" />} darkMode={darkMode} />
-              <span>,</span>
-            
-              <span>and</span>
-              <SkillTag name="MongoDB" icon={<SiMongodb className="text-emerald-500" />} darkMode={darkMode} />
-            </motion.div>
-            <motion.div 
-              variants={{
-                hidden: { opacity: 0, x: -10, filter: "blur(4px)" },
-                visible: { opacity: 1, x: 0, filter: "blur(0px)" }
-              }}
-              className={`mt-2 ${darkMode ? "text-zinc-400" : "text-zinc-500"}`}
-            >
-              With a focus on <span className={`font-semibold ${darkMode ? "text-zinc-200" : "text-zinc-900"}`}>UI Design</span> & Enthusiastic about <span className={`font-semibold ${darkMode ? "text-zinc-200" : "text-zinc-900"}`}>Three.js</span>, driven by a keen eye for detail.
-            </motion.div>
+            {/* Skills line */}
+
+
+
           </motion.div>
 
-          {/* Buttons */}
-          <div className="flex flex-wrap gap-4 mt-5">
-            <button className={`flex items-center gap-2 px-6 py-3 rounded-xl border text-[15px] font-bold transition-all hover:scale-[1.02] active:scale-[0.98] ${
-              darkMode 
-                ? "bg-zinc-900 border-zinc-800 text-white hover:bg-zinc-800 shadow-lg shadow-black/20" 
-                : "bg-white border-zinc-200 text-zinc-800 hover:bg-zinc-50 shadow-sm"
-            }`}>
-              <FaFileAlt className="text-zinc-400" />
-              Resume / CV
-            </button>
-            <a 
-              href={`mailto:${email}`}
-              onClick={handleCopyEmail}
-              className={`relative flex items-center gap-2 px-6 py-3 rounded-xl text-[15px] font-bold transition-all hover:scale-[1.02] active:scale-[0.98] ${
-                darkMode 
-                  ? "bg-white text-black hover:bg-zinc-200 shadow-lg shadow-white/5" 
-                  : "bg-zinc-950 text-white hover:bg-zinc-800 shadow-xl shadow-zinc-950/20"
-              }`}
-            >
-              <FaPaperPlane className="text-sm" />
-              {copied ? "Email Copied!" : "Get in touch"}
-            </a>
-          </div>
+          {/* Info Grid & Socials */}
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.7 }}
+            className="mt-3 w-full max-w-5xl"
+          >
+            {/* Grid */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-y-3 sm:gap-y-2 gap-x-6 px-1 py-2">
+              <InfoItem icon={<FaCode size={13} />} text="Backend Developer @shadcncraft" className="title" darkMode={darkMode} />
+              <div className="hidden sm:block" />
 
-          <div className={`flex flex-wrap items-center gap-6 mt-8 text-[22px] ${darkMode ? "text-zinc-600" : "text-zinc-400"}`}>
-            <a href="https://www.linkedin.com/in/biswajitdas-" target="_blank" rel="noopener noreferrer" className={`transition-all hover:scale-110 ${darkMode ? "hover:text-blue-400" : "hover:text-blue-600"}`}>
-              <FaLinkedin className="cursor-pointer transition-colors" />
-            </a>
-            <a href="https://github.com/Biswasource" target="_blank" rel="noopener noreferrer" className={`transition-all hover:scale-110 ${darkMode ? "hover:text-white" : "hover:text-black"}`}>
-              <FaGithub className="cursor-pointer transition-colors" />
-            </a>
-            <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className={`transition-all hover:scale-110 ${darkMode ? "hover:text-pink-400" : "hover:text-pink-500"}`}>
-              <FaInstagram className="cursor-pointer transition-colors" />
-            </a>
-            <div className="relative group">
-              <a 
-                href={`mailto:${email}`}
-                onClick={handleCopyEmail}
-                className={`transition-all hover:scale-110 block ${darkMode ? "hover:text-emerald-400" : "hover:text-emerald-600"}`}
-              >
-                <FaEnvelope className="cursor-pointer transition-colors" />
-              </a>
-              {copied && (
-                <span className="absolute -top-10 left-1/2 -translate-x-1/2 px-3 py-1.5 bg-zinc-800 text-white text-[11px] font-medium rounded-lg shadow-xl whitespace-nowrap">
-                  Copied to clipboard!
-                </span>
-              )}
+              <InfoItem icon={<FaQuestion size={13} />} text="Founder @Uivault" href="https://uivault.in" className="title" darkMode={darkMode} />
+              <div className="hidden sm:block" />
+
+              <InfoItem icon={<FaMapMarkerAlt size={13} />} text="Cuttack, Odisha" className="title" darkMode={darkMode} />
+              <InfoItem icon={<FaRegClock size={13} />} text={timeStr || "Loading..."} className="title" darkMode={darkMode} />
+
+              <InfoItem icon={<FaEnvelope size={13} />} text="biswajit9348das@gmail.com" href="mailto:biswajit9348das@gmail.com" className="title" darkMode={darkMode} />
+              <div className="hidden sm:block" />
+
+              <InfoItem icon={<FaLink size={13} />} text="biswajit.uivault.in" href="https://biswajit.uivault.in" className="title" darkMode={darkMode} />
+              <InfoItem icon={<FaMars size={13} />} text="he/him" className="title" darkMode={darkMode} />
             </div>
-          </div>
+
+            {/* Social Buttons */}
+            <div className="flex flex-wrap items-center gap-3 mt-3">
+              <SocialButton href="https://twitter.com" icon={<RiTwitterXFill size={16} />} darkMode={darkMode} />
+              <SocialButton href="https://github.com/Biswasource" icon={<FaGithub size={16} />} darkMode={darkMode} />
+              <SocialButton href="https://www.linkedin.com/in/biswajitdas-" icon={<FaLinkedin size={16} />} darkMode={darkMode} />
+              <SocialButton href="https://instagram.com" icon={<FaInstagram size={16} />} darkMode={darkMode} />
+
+              <div className="relative group">
+                <SocialButton
+                  href={`mailto:${email}`}
+                  onClick={handleCopyEmail}
+                  icon={<FaEnvelope size={16} />}
+                  darkMode={darkMode}
+                />
+                {copied && (
+                  <span className="absolute -top-10 left-1/2 -translate-x-1/2 px-3 py-1.5 bg-zinc-800 text-white text-[11px] font-medium rounded-lg shadow-xl whitespace-nowrap">
+                    Copied!
+                  </span>
+                )}
+              </div>
+            </div>
+          </motion.div>
         </motion.div>
       </div>
     </section>

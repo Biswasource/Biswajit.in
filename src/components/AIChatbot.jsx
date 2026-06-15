@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { FaCommentDots, FaTimes, FaPaperPlane } from "react-icons/fa";
+import { FaTimes, FaPaperPlane } from "react-icons/fa";
 
 export default function AIChatbot({ darkMode }) {
   const [isOpen, setIsOpen] = useState(false);
@@ -8,6 +8,26 @@ export default function AIChatbot({ darkMode }) {
   const [inputValue, setInputValue] = useState("");
   const [isTyping, setIsTyping] = useState(false);
   const messagesEndRef = useRef(null);
+
+  // Typewriter effect for the thought bubble
+  const [bubbleText, setBubbleText] = useState("");
+  const fullBubbleText = "Ask me anything!";
+
+  useEffect(() => {
+    if (!isOpen) {
+      let i = 0;
+      setBubbleText("");
+      const timer = setInterval(() => {
+        if (i < fullBubbleText.length) {
+          setBubbleText(fullBubbleText.slice(0, i + 1));
+          i++;
+        } else {
+          clearInterval(timer);
+        }
+      }, 80); // Typing speed
+      return () => clearInterval(timer);
+    }
+  }, [isOpen]);
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -162,7 +182,7 @@ export default function AIChatbot({ darkMode }) {
       // Get time-based greeting
       const hour = new Date().getHours();
       let timeGreeting = "Hello";
-      
+
       if (hour >= 5 && hour < 12) {
         timeGreeting = "Good Morning";
       } else if (hour >= 12 && hour < 17) {
@@ -172,7 +192,7 @@ export default function AIChatbot({ darkMode }) {
       } else {
         timeGreeting = "Hello";
       }
-      
+
       return {
         text: `${timeGreeting}! I'm Biswajit's AI assistant. I can help you learn about:\n\n• Education\n• Projects\n• Experience\n• Skills\n• Blogs\n• CV/Resume\n\nWhat would you like to know?`,
       };
@@ -346,9 +366,9 @@ export default function AIChatbot({ darkMode }) {
           minute: "2-digit",
         }),
       };
-      
+
       setMessages((prev) => [...prev, aiResponse]);
-      
+
       // Add follow-up message after a short delay
       setTimeout(() => {
         const followUp = {
@@ -362,7 +382,7 @@ export default function AIChatbot({ darkMode }) {
         };
         setMessages((prev) => [...prev, followUp]);
       }, 800);
-      
+
       setIsTyping(false);
     }, 1000);
   };
@@ -394,26 +414,65 @@ export default function AIChatbot({ darkMode }) {
 
   return (
     <>
-      {/* Floating Chat Button */}
+      {/* Floating Chat Button & Thought Bubble */}
       <AnimatePresence>
         {!isOpen && (
-          <motion.button
-            initial={{ scale: 0, opacity: 0 }}
-            animate={{ scale: 1, opacity: 1 }}
-            exit={{ scale: 0, opacity: 0 }}
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            onClick={() => setIsOpen(true)}
-            className={`fixed bottom-6 right-6 z-50 w-14 h-14 rounded-full shadow-lg border transition-all ${
-              darkMode
-                ? "bg-black border-zinc-700 text-white hover:border-zinc-600"
-                : "bg-white border-gray-300 text-black hover:border-gray-400"
-            }`}
-          >
-            <div className="flex items-center justify-center">
-              <FaCommentDots className="text-2xl" />
-            </div>
-          </motion.button>
+          <div className="fixed bottom-6 right-10 z-50 flex flex-col items-end pointer-events-none">
+            {/* Animated Thought Bubble */}
+            <motion.div
+              initial={{ opacity: 0, y: 10, scale: 0.8 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.8 }}
+              transition={{ delay: 0.5, type: "spring", stiffness: 200, damping: 15 }}
+              className="pointer-events-auto"
+            >
+              <motion.div
+                animate={{ y: [0, -5, 0] }}
+                transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+                className={`mb-3 mr-4 px-4 py-2.5 rounded-2xl rounded-br-sm shadow-xl text-sm font-medium border relative cursor-pointer ${
+                  darkMode 
+                    ? "bg-zinc-800 border-zinc-700 text-zinc-200" 
+                    : "bg-white border-zinc-200 text-zinc-700"
+                }`}
+                onClick={() => setIsOpen(true)}
+              >
+                <div className="flex items-center gap-2 h-6">
+                  <span className="text-lg">💭</span>
+                  <span className="bg-clip-text text-transparent bg-gradient-to-r from-emerald-400 to-cyan-400 font-bold">
+                    {bubbleText}
+                    <motion.span
+                      animate={{ opacity: [1, 0] }}
+                      transition={{ duration: 0.8, repeat: Infinity, ease: "linear" }}
+                      className="inline-block w-1.5 h-4 ml-0.5 align-middle bg-cyan-400"
+                    />
+                  </span>
+                </div>
+                {/* Tail of the thought bubble */}
+                <div className={`absolute -bottom-2 right-4 w-3 h-3 rotate-45 border-b border-r ${
+                  darkMode ? "bg-zinc-800 border-zinc-700" : "bg-white border-zinc-200"
+                }`}></div>
+              </motion.div>
+            </motion.div>
+
+            {/* Cat Button */}
+            <motion.button
+              initial={{ scale: 0, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0, opacity: 0 }}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              onClick={() => setIsOpen(true)}
+              className="pointer-events-auto transition-transform "
+            >
+              <div className="flex items-center justify-center">
+                <img
+                  src="/chatbot-cat.png"
+                  alt="AI Chatbot"
+                  className="w-16 h-16 md:w-20 md:h-20 object-cover rounded-full shadow-xl hover:shadow-2xl transition-shadow"
+                />
+              </div>
+            </motion.button>
+          </div>
         )}
       </AnimatePresence>
 
@@ -425,28 +484,25 @@ export default function AIChatbot({ darkMode }) {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 20, scale: 0.95 }}
             transition={{ duration: 0.2 }}
-            className={`fixed bottom-6 right-6 z-50 w-[95vw] sm:w-[400px] h-[85vh] sm:h-[600px] max-h-[500px] rounded-lg shadow-2xl overflow-hidden border ${
-              darkMode
-                ? "bg-black border-zinc-800"
-                : "bg-white border-gray-200"
-            }`}
+            className={`fixed bottom-6 right-6 z-50 w-[95vw] sm:w-[400px] h-[85vh] sm:h-[600px] max-h-[500px] rounded-lg shadow-2xl overflow-hidden border ${darkMode
+              ? "bg-black border-zinc-800"
+              : "bg-white border-gray-200"
+              }`}
           >
             {/* Header */}
             <div
-              className={`px-4 py-3 border-b flex items-center justify-between ${
-                darkMode
-                  ? "bg-black border-zinc-800"
-                  : "bg-white border-gray-200"
-              }`}
+              className={`px-4 py-3 border-b flex items-center justify-between ${darkMode
+                ? "bg-black border-zinc-800"
+                : "bg-white border-gray-200"
+                }`}
             >
               <div className="flex items-center gap-3">
                 <div className="relative">
-                  <div className={`w-9 h-9 rounded-full overflow-hidden border ${
-                    darkMode ? "border-zinc-700" : "border-gray-300"
-                  }`}>
-                    <img 
-                      src="./profile.jpg" 
-                      alt="Biswajit Das" 
+                  <div className={`w-9 h-9 rounded-full overflow-hidden border ${darkMode ? "border-zinc-700" : "border-gray-300"
+                    }`}>
+                    <img
+                      src="./profile.jpg"
+                      alt="Biswajit Das"
                       className="w-full h-full object-cover"
                       onError={(e) => {
                         // Fallback to a placeholder if image doesn't load
@@ -473,9 +529,8 @@ export default function AIChatbot({ darkMode }) {
               </div>
               <button
                 onClick={() => setIsOpen(false)}
-                className={`p-1.5 rounded-md transition-colors ${
-                  darkMode ? "hover:bg-zinc-900" : "hover:bg-gray-100"
-                }`}
+                className={`p-1.5 rounded-md transition-colors ${darkMode ? "hover:bg-zinc-900" : "hover:bg-gray-100"
+                  }`}
               >
                 <FaTimes className={`text-lg ${darkMode ? "text-zinc-400" : "text-gray-600"}`} />
               </button>
@@ -483,9 +538,8 @@ export default function AIChatbot({ darkMode }) {
 
             {/* Messages Area */}
             <div
-              className={`h-[calc(100%-120px)] overflow-y-auto p-3 sm:p-4 space-y-3 ${
-                darkMode ? "bg-black" : "bg-white"
-              }`}
+              className={`h-[calc(100%-120px)] overflow-y-auto p-3 sm:p-4 space-y-3 ${darkMode ? "bg-black" : "bg-white"
+                }`}
             >
               {messages.map((message) => (
                 <motion.div
@@ -493,21 +547,19 @@ export default function AIChatbot({ darkMode }) {
                   initial={{ opacity: 0, y: 10, filter: "blur(4px)" }}
                   animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
                   transition={{ duration: 0.4, ease: "easeOut" }}
-                  className={`flex ${
-                    message.sender === "user" ? "justify-end" : "justify-start"
-                  }`}
+                  className={`flex ${message.sender === "user" ? "justify-end" : "justify-start"
+                    }`}
                 >
                   <div className={`max-w-[95%] sm:max-w-[95%]`}>
                     <div
-                      className={`px-3 py-2 rounded-lg border ${
-                        message.sender === "user"
-                          ? darkMode
-                            ? "bg-white text-black border-white"
-                            : "bg-black text-white border-black"
-                          : darkMode
+                      className={`px-3 py-2 rounded-lg border ${message.sender === "user"
+                        ? darkMode
+                          ? "bg-white text-black border-white"
+                          : "bg-black text-white border-black"
+                        : darkMode
                           ? "bg-zinc-900 text-white border-zinc-800"
                           : "bg-white text-black border-gray-200"
-                      }`}
+                        }`}
                     >
                       {/* Render message text with proper formatting */}
                       <div className="text-xs mb-2 title">
@@ -531,18 +583,17 @@ export default function AIChatbot({ darkMode }) {
                           );
                         })}
                       </div>
-                      
+
                       {/* Render structured items with logos on left */}
                       {message.items && message.items.length > 0 && (
                         <div className="space-y-3 mt-3">
                           {message.items.map((item, idx) => (
                             <div
                               key={idx}
-                              className={`p-2 rounded-md border ${
-                                darkMode
-                                  ? "bg-black border-zinc-700"
-                                  : "bg-white border-gray-300"
-                              }`}
+                              className={`p-2 rounded-md border ${darkMode
+                                ? "bg-black border-zinc-700"
+                                : "bg-white border-gray-300"
+                                }`}
                             >
                               {/* Logo + Title Row */}
                               <div className="flex items-start gap-2 mb-2">
@@ -561,20 +612,18 @@ export default function AIChatbot({ darkMode }) {
                                     {item.title}
                                   </p>
                                   {item.subtitle && (
-                                    <p className={`text-xs mt-0.5 title ${
-                                      darkMode ? "text-zinc-500" : "text-gray-500"
-                                    }`}>
+                                    <p className={`text-xs mt-0.5 title ${darkMode ? "text-zinc-500" : "text-gray-500"
+                                      }`}>
                                       {item.subtitle}
                                     </p>
                                   )}
                                 </div>
                               </div>
-                              
+
                               {/* Details */}
                               {item.details && item.details.length > 0 && (
-                                <div className={`text-xs space-y-1 pl-10 ${
-                                  darkMode ? "text-zinc-400" : "text-gray-600"
-                                }`}>
+                                <div className={`text-xs space-y-1 pl-10 ${darkMode ? "text-zinc-400" : "text-gray-600"
+                                  }`}>
                                   {item.details.map((detail, detailIdx) => (
                                     <p key={detailIdx} className="leading-relaxed title">
                                       • {detail}
@@ -586,7 +635,7 @@ export default function AIChatbot({ darkMode }) {
                           ))}
                         </div>
                       )}
-                      
+
                       {/* Render clickable links if present */}
                       {message.links && message.links.length > 0 && (
                         <div className="mt-2 space-y-1.5">
@@ -596,28 +645,26 @@ export default function AIChatbot({ darkMode }) {
                               href={link.url}
                               target={link.url.startsWith("http") ? "_blank" : "_self"}
                               rel={link.url.startsWith("http") ? "noopener noreferrer" : ""}
-                              className={`block text-xs px-2 py-1.5 rounded border transition-colors ${
-                                darkMode
-                                  ? "border-zinc-700 hover:bg-zinc-800 text-zinc-300 hover:text-white"
-                                  : "border-gray-300 hover:bg-gray-100 text-gray-700 hover:text-black"
-                              }`}
+                              className={`block text-xs px-2 py-1.5 rounded border transition-colors ${darkMode
+                                ? "border-zinc-700 hover:bg-zinc-800 text-zinc-300 hover:text-white"
+                                : "border-gray-300 hover:bg-gray-100 text-gray-700 hover:text-black"
+                                }`}
                             >
                               {link.text}
                             </a>
                           ))}
                         </div>
                       )}
-                      
+
                       <p
-                        className={`text-xs mt-2 ${
-                          message.sender === "user"
-                            ? darkMode
-                              ? "text-gray-600"
-                              : "text-gray-400 title"
-                            : darkMode
+                        className={`text-xs mt-2 ${message.sender === "user"
+                          ? darkMode
+                            ? "text-gray-600"
+                            : "text-gray-400 title"
+                          : darkMode
                             ? "text-zinc-600"
                             : "text-gray-400 title"
-                        }`}
+                          }`}
                       >
                         {message.timestamp}
                       </p>
@@ -635,29 +682,25 @@ export default function AIChatbot({ darkMode }) {
                   className="flex items-start gap-2"
                 >
                   <div
-                    className={`px-3 py-2 rounded-lg border ${
-                      darkMode
-                        ? "bg-zinc-900 border-zinc-800"
-                        : "bg-gray-50 border-gray-200"
-                    }`}
+                    className={`px-3 py-2 rounded-lg border ${darkMode
+                      ? "bg-zinc-900 border-zinc-800"
+                      : "bg-gray-50 border-gray-200"
+                      }`}
                   >
                     <div className="flex gap-1">
                       <span
-                        className={`w-2 h-2 rounded-full ${
-                          darkMode ? "bg-zinc-600" : "bg-gray-400"
-                        } animate-bounce`}
+                        className={`w-2 h-2 rounded-full ${darkMode ? "bg-zinc-600" : "bg-gray-400"
+                          } animate-bounce`}
                         style={{ animationDelay: "0ms" }}
                       ></span>
                       <span
-                        className={`w-2 h-2 rounded-full ${
-                          darkMode ? "bg-zinc-600" : "bg-gray-400"
-                        } animate-bounce`}
+                        className={`w-2 h-2 rounded-full ${darkMode ? "bg-zinc-600" : "bg-gray-400"
+                          } animate-bounce`}
                         style={{ animationDelay: "150ms" }}
                       ></span>
                       <span
-                        className={`w-2 h-2 rounded-full ${
-                          darkMode ? "bg-zinc-600" : "bg-gray-400"
-                        } animate-bounce`}
+                        className={`w-2 h-2 rounded-full ${darkMode ? "bg-zinc-600" : "bg-gray-400"
+                          } animate-bounce`}
                         style={{ animationDelay: "300ms" }}
                       ></span>
                     </div>
@@ -669,9 +712,8 @@ export default function AIChatbot({ darkMode }) {
 
             {/* Input Area */}
             <div
-              className={`p-3 border-t ${
-                darkMode ? "border-zinc-800 bg-black" : "border-gray-200 bg-white"
-              }`}
+              className={`p-3 border-t ${darkMode ? "border-zinc-800 bg-black" : "border-gray-200 bg-white"
+                }`}
             >
               <div className="flex gap-2">
                 <input
@@ -680,24 +722,22 @@ export default function AIChatbot({ darkMode }) {
                   onChange={(e) => setInputValue(e.target.value)}
                   onKeyPress={handleKeyPress}
                   placeholder="Ask me anything..."
-                  className={`title flex-1 px-3 py-2 text-sm rounded-md border transition-colors ${
-                    darkMode
-                      ? "bg-zinc-900 border-zinc-800 text-white placeholder-zinc-600 focus:border-zinc-700"
-                      : "bg-gray-50 border-gray-300 text-black placeholder-gray-400 focus:border-gray-400"
-                  } focus:outline-none`}
+                  className={`title flex-1 px-3 py-2 text-sm rounded-md border transition-colors ${darkMode
+                    ? "bg-zinc-900 border-zinc-800 text-white placeholder-zinc-600 focus:border-zinc-700"
+                    : "bg-gray-50 border-gray-300 text-black placeholder-gray-400 focus:border-gray-400"
+                    } focus:outline-none`}
                 />
                 <button
                   onClick={handleSendMessage}
                   disabled={!inputValue.trim()}
-                  className={`px-3 py-2 rounded-md transition-all ${
-                    inputValue.trim()
-                      ? darkMode
-                        ? "bg-white text-black hover:bg-gray-100"
-                        : "bg-black text-white hover:bg-gray-800"
-                      : darkMode
+                  className={`px-3 py-2 rounded-md transition-all ${inputValue.trim()
+                    ? darkMode
+                      ? "bg-white text-black hover:bg-gray-100"
+                      : "bg-black text-white hover:bg-gray-800"
+                    : darkMode
                       ? "bg-zinc-900 text-zinc-700 cursor-not-allowed"
                       : "bg-gray-200 text-gray-400 cursor-not-allowed"
-                  }`}
+                    }`}
                 >
                   <FaPaperPlane className="text-sm" />
                 </button>

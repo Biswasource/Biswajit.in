@@ -33,8 +33,7 @@
 
 @font-face {
   font-family: "JetBrains";
-  src: url("../src/assets/fonts/cardinalfruitweb-regular.ttf")
-    format("truetype");
+  src: url("../src/assets/fonts/cardinalfruitweb-regular.ttf") format("truetype");
   font-weight: lighter !important;
 
   font-size: 15px;
@@ -46,24 +45,28 @@
 }
 
 *::selection {
-  background-color: black; /* background color when text is selected */
-  color: white; /* text color when selected */
+  background-color: black;
+  /* background color when text is selected */
+  color: white;
+  /* text color when selected */
 }
 
 /* Hide scrollbar completely across browsers */
 .scrollbar-hide {
-  -ms-overflow-style: none; /* IE and Edge */
-  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none;
+  /* IE and Edge */
+  scrollbar-width: none;
+  /* Firefox */
 }
 
 .scrollbar-hide::-webkit-scrollbar {
-  display: none; /* Chrome, Safari, Opera */
+  display: none;
+  /* Chrome, Safari, Opera */
 }
 
 @font-face {
   font-family: "light";
-  src: url("../src/assets/fonts/JetBrainsMono-ExtraLight.ttf")
-    format("truetype");
+  src: url("../src/assets/fonts/JetBrainsMono-ExtraLight.ttf") format("truetype");
   font-weight: lighter !important;
 
   font-style: normal;
@@ -184,6 +187,7 @@
   * {
     @apply border-border outline-ring/50;
   }
+
   body {
     @apply bg-background text-foreground;
   }

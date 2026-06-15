@@ -79,23 +79,20 @@ export default function Profile() {
 
   return (
     <div
-      className={`${
-        darkMode ? "bg-black text-white" : "bg-white text-zinc-800"
-      } min-h-screen font-mono`}
+      className={`${darkMode ? "bg-black text-white" : "bg-white text-zinc-800"
+        } min-h-screen font-mono`}
     >
       <header
-        className={`flex flex-col sm:flex-row justify-center transition-all duration-300 ${
-          scrolled 
-            ? `${darkMode ? "bg-black/60 border-zinc-800" : "bg-white/70 border-zinc-200"} border-b backdrop-blur-md shadow-sm` 
+        className={`flex flex-col sm:flex-row justify-center transition-all duration-300 ${scrolled
+            ? `${darkMode ? "bg-black/60 border-zinc-800" : "bg-white/70 border-zinc-200"} border-b backdrop-blur-md shadow-sm`
             : `${darkMode ? "bg-black" : "bg-white"} border-transparent`
-        } border-b sticky top-0 z-50`}
+          } border-b sticky top-0 z-50`}
       >
         <div className="flex items-center justify-between w-full max-w-3xl py-3 px-4 sm:py-4 sm:px-8">
           {/* Logo */}
           <span
-            className={`font-bold text-2xl tracking-tight sm:text-3xl  ${
-              darkMode ? "text-white" : "text-black"
-            }`}
+            className={`font-bold text-2xl tracking-tight sm:text-3xl  ${darkMode ? "text-white" : "text-black"
+              }`}
           >
             BD
           </span>
@@ -109,48 +106,42 @@ export default function Profile() {
             <nav className="hidden sm:flex items-center gap-6 title">
               <Link
                 to="/blog"
-                className={`hover:text-gray-400 ${
-                  darkMode ? "text-white" : "text-zinc-600"
-                }`}
+                className={`hover:text-gray-400 ${darkMode ? "text-white" : "text-zinc-600"
+                  }`}
               >
                 Blog
               </Link>
               <a
                 href="#"
-                className={`hover:text-gray-400 ${
-                  darkMode ? "text-white" : "text-zinc-600"
-                }`}
+                className={`hover:text-gray-400 ${darkMode ? "text-white" : "text-zinc-600"
+                  }`}
               >
                 Components
               </a>
             </nav>
-            <div className={`relative flex items-center group border transition-all duration-300 rounded-xl px-2 ${
-              darkMode 
-                ? "bg-zinc-900 border-zinc-800 focus-within:border-blue-500/50" 
+            <div className={`relative flex items-center group border transition-all duration-300 rounded-xl px-2 ${darkMode
+                ? "bg-zinc-900 border-zinc-800 focus-within:border-blue-500/50"
                 : "bg-zinc-50 border-zinc-200 focus-within:border-blue-500/50"
-            }`}>
-              <FaSearch className={`absolute left-2.5 text-xs transition-colors ${
-                darkMode ? "text-zinc-500 group-focus-within:text-blue-500" : "text-zinc-400 group-focus-within:text-blue-500"
-              }`} />
+              }`}>
+              <FaSearch className={`absolute left-2.5 text-xs transition-colors ${darkMode ? "text-zinc-500 group-focus-within:text-blue-500" : "text-zinc-400 group-focus-within:text-blue-500"
+                }`} />
               <input
                 type="text"
                 placeholder="Ctrl K"
-                className={`pl-8 pr-2 py-1.5 text-xs sm:text-sm w-24 sm:w-32 bg-transparent focus:outline-none title transition-colors ${
-                  darkMode ? "text-white placeholder-zinc-600" : "text-zinc-900 placeholder-zinc-400"
-                }`}
+                className={`pl-8 pr-2 py-1.5 text-xs sm:text-sm w-24 sm:w-32 bg-transparent focus:outline-none title transition-colors ${darkMode ? "text-white placeholder-zinc-600" : "text-zinc-900 placeholder-zinc-400"
+                  }`}
               />
             </div>
 
             {/* GitHub */}
-            <a 
-              href="https://github.com/Biswasource" 
-              target="_blank" 
+            <a
+              href="https://github.com/Biswasource"
+              target="_blank"
               rel="noopener noreferrer"
-              className={`p-2 border rounded-full transition-all duration-300 hover:scale-110 active:scale-95 ${
-                darkMode 
-                  ? "border-zinc-800 bg-zinc-900 text-white hover:border-zinc-700 hover:text-blue-400" 
+              className={`p-2 border rounded-full transition-all duration-300 hover:scale-110 active:scale-95 ${darkMode
+                  ? "border-zinc-800 bg-zinc-900 text-white hover:border-zinc-700 hover:text-blue-400"
                   : "border-zinc-200 bg-white text-zinc-800 hover:border-zinc-300 hover:text-blue-600 shadow-sm"
-              }`}
+                }`}
             >
               <FaGithub className="text-lg" />
             </a>
@@ -158,11 +149,10 @@ export default function Profile() {
             {/* Dark Mode */}
             <button
               onClick={() => setDarkMode(!darkMode)}
-              className={`p-2 border rounded-full transition-all duration-300 hover:scale-110 active:scale-95 ${
-                darkMode 
-                  ? "border-zinc-800 bg-zinc-900 text-yellow-400 hover:border-zinc-700" 
+              className={`p-2 border rounded-full transition-all duration-300 hover:scale-110 active:scale-95 ${darkMode
+                  ? "border-zinc-800 bg-zinc-900 text-yellow-400 hover:border-zinc-700"
                   : "border-zinc-200 bg-white text-zinc-600 hover:border-zinc-300 hover:text-blue-600 shadow-sm"
-              }`}
+                }`}
             >
               {darkMode ? <HiSun className="text-lg" /> : <HiMoon className="text-lg" />}
             </button>
@@ -198,26 +188,23 @@ export default function Profile() {
         {/* Mobile Menu */}
         {menuOpen && (
           <div
-            className={`sm:hidden fixed top-12 m-1 rounded-xl right-0 min-h flex flex-col  gap-2 text-left py-4 w-1/2 z-50 shadow-lg ${
-              darkMode
+            className={`sm:hidden fixed top-12 m-1 rounded-xl right-0 min-h flex flex-col  gap-2 text-left py-4 w-1/2 z-50 shadow-lg ${darkMode
                 ? "bg-neutral-900 border border-zinc-900"
                 : "bg-white border border-zinc-200"
-            }`}
+              }`}
           >
             <Link
               to="/blog"
-              className={`py-2 px-4 w-full text-left title hover:bg-zinc-700 rounded-md ${
-                darkMode ? "text-white" : "text-black"
-              }`}
+              className={`py-2 px-4 w-full text-left title hover:bg-zinc-700 rounded-md ${darkMode ? "text-white" : "text-black"
+                }`}
               onClick={() => setMenuOpen(false)}
             >
               Blog
             </Link>
             <a
               href="#"
-              className={`py-2 px-4 w-full text-left title hover:bg-zinc-700 rounded-md ${
-                darkMode ? "text-white" : "text-black"
-              }`}
+              className={`py-2 px-4 w-full text-left title hover:bg-zinc-700 rounded-md ${darkMode ? "text-white" : "text-black"
+                }`}
               onClick={() => setMenuOpen(false)}
             >
               Components
@@ -227,7 +214,7 @@ export default function Profile() {
       </header>
 
       <BackgroundGrid darkMode={darkMode}>
-        <Hero darkMode={darkMode} />
+        <Hero darkMode={darkMode} speakName={speakName} isSpeaking={isSpeaking} />
 
         <AboutSocialLinks darkMode={darkMode} />
         <GithubContribution darkMode={darkMode} />
@@ -241,7 +228,6 @@ export default function Profile() {
       <Footer darkMode={darkMode} />
 
       {/* AI Chatbot Assistant */}
-      <AIChatbot darkMode={darkMode} />
     </div>
   );
 }
