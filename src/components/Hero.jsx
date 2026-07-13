@@ -97,7 +97,6 @@ const Hero = ({ darkMode }) => {
 
   const roles = [
     "Fullstack Developer",
-    "Creating with code. Small details matter.",
     "Mobile App Developer",
     "Open Source contributor"
   ];
@@ -154,10 +153,10 @@ const Hero = ({ darkMode }) => {
               <div className="flex items-center gap-5">
                 {/* Avatar */}
                 <div className="relative flex-shrink-0">
-                  <div className={`w-34 h-34 md:w-40 md:h-40 rounded-full overflow-hidden transition-colors ${darkMode ? "border-zinc-800 bg-zinc-900" : "border-zinc-100 bg-white"
+                  <div className={`w-34 h-34 md:w-40 md:h-40 object-cover rounded-full overflow-hidden transition-colors ${darkMode ? "border-zinc-800 bg-zinc-900" : "border-zinc-100 bg-white"
                     }`}>
                     <img
-                      src="/profile-white.png"
+                      src="/profile.png"
                       alt="Biswajit Das"
                       className="w-full h-full object-cover"
                     />
@@ -196,7 +195,7 @@ const Hero = ({ darkMode }) => {
                     animate={{ scaleX: 1, opacity: 1 }}
                     transition={{ duration: 0.55, ease: "easeOut", delay: 0.55 }}
                     style={{ originX: 0 }}
-                    className={`h-[2px] w-10 rounded-full ${darkMode ? "bg-zinc-600" : "bg-zinc-300"}`}
+                    className={`h-[2px] w-full rounded-full ${darkMode ? "bg-zinc-600" : "bg-zinc-300"}`}
                   />
                 </div>
               </div>
