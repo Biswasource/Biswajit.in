@@ -19,6 +19,7 @@ import TechStack from "../pages/Stack";
 import ExperienceSection from "../pages/Experience";
 import ProjectSection from "../pages/ProjectSection";
 import EducationSection from "../pages/EducationSection";
+import CertificationsSection from "../pages/CertificationsSection";
 import AIChatbot from "./AIChatbot";
 import Footer from "./Footer";
 import Hero from "./Hero";
@@ -283,6 +284,7 @@ export default function Profile() {
         <ExperienceSection darkMode={darkMode} />
         <ProjectSection darkMode={darkMode} />
         <EducationSection darkMode={darkMode} />
+        <CertificationsSection darkMode={darkMode} />
       </BackgroundGrid>
 
       {/* Footer */}
