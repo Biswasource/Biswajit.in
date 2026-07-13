@@ -30,7 +30,7 @@
 @font-face {
   font-family: "JetBrains";
   src: url("../src/assets/fonts/IBMPlexMono-Regular.ttf") format("truetype");
-  
+
 
 }
 
@@ -48,18 +48,24 @@
   font-style: normal;
 }
 
-.li{
+.li {
   font-family: "light";
 }
 
 /* Hide scrollbar completely across browsers */
-html, body {
-  -ms-overflow-style: none; /* IE and Edge */
-  scrollbar-width: none; /* Firefox */
+html,
+body {
+  -ms-overflow-style: none;
+  /* IE and Edge */
+  scrollbar-width: none;
+  /* Firefox */
+  overflow-x: hidden;
 }
 
-html::-webkit-scrollbar, body::-webkit-scrollbar {
-  display: none; /* Chrome, Safari, Opera */
+html::-webkit-scrollbar,
+body::-webkit-scrollbar {
+  display: none;
+  /* Chrome, Safari, Opera */
 }
 
 .scrollbar-hide {
@@ -72,8 +78,10 @@ html::-webkit-scrollbar, body::-webkit-scrollbar {
 }
 
 *::selection {
-  background-color: black; /* background color when text is selected */
-  color: white; /* text color when selected */
+  background-color: black;
+  /* background color when text is selected */
+  color: white;
+  /* text color when selected */
 }
 
 
@@ -186,8 +194,13 @@ html::-webkit-scrollbar, body::-webkit-scrollbar {
 }
 
 @keyframes shimmer {
-  from { background-position: 200% center; }
-  to { background-position: -200% center; }
+  from {
+    background-position: 200% center;
+  }
+
+  to {
+    background-position: -200% center;
+  }
 }
 
 .animate-shimmer {
@@ -198,6 +211,7 @@ html::-webkit-scrollbar, body::-webkit-scrollbar {
   * {
     @apply border-border outline-ring/50;
   }
+
   body {
     @apply bg-background text-foreground;
   }

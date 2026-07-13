@@ -20,14 +20,12 @@ export default function Experience({ darkMode }) {
       company: "Hyperdigitech",
       logo: "./hbt.png",
       role: "Backend Developer",
-      duration: "08.2025 — Present",
+      duration: "08.2025 — 02.2026",
       description: [
         "Worked on multiple SaaS-based platforms, developing and maintaining scalable backend systems.",
         "Developed scalable RESTful APIs using Node.js and Express for salon operations.",
         "Implemented CI/CD pipelines with Jenkins for automated builds and deployments.",
         "Managed databases including MongoDB and PostgreSQL, ensuring data integrity.",
-        "Optimized server performance and ensured high availability for production applications.",
-        "Collaborated with frontend developers to integrate APIs and real-time features.",
       ],
     },
     {
@@ -37,11 +35,9 @@ export default function Experience({ darkMode }) {
       duration: "05.2025 — Present",
       description: [
         "Worked on multiple client projects, building responsive and interactive web applications.",
-        "Delivered custom client solutions with optimized UI/UX and seamless API integrations.",
         "Implemented end-to-end solutions using MERN stack, integrating APIs and databases.",
         "Collaborated with clients to understand requirements and deliver custom solutions.",
         "Optimized websites for SEO and performance using Next.js and Tailwind CSS.",
-        "Maintained code quality using ESLint and Prettier.",
       ],
     },
   ];

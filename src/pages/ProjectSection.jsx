@@ -18,14 +18,47 @@ export default function ProjectSection({ darkMode }) {
   };
   const projects = [
     {
+      name: "HireSet",
+      logo: "./hireset.png",
+      duration: "06.2025 — Present",
+      description: [
+        "Developed a secure online assessment platform that enables organizations and institutes to conduct coding and aptitude tests remotely.",
+        "Built role-based Admin and Student dashboards with real-time test monitoring, result generation, and candidate management.",
+        "Integrated WebRTC-powered live proctoring with screen sharing, webcam monitoring, and anti-cheating features to ensure a strict online examination environment.",
+      ],
+      tags: [
+        "React.js",
+        "Firebase",
+        "WebRTC",
+        "Node.js",
+        "MongoDB",
+        "Tailwind CSS",
+        "Real-time Monitoring",
+        "Screen Sharing",
+        "Admin Panel",
+        "Online Assessment",
+      ],
+      links: [
+        {
+          icon: <FaGithub />,
+          url: "https://github.com/yourusername/hireset",
+          tooltip: "GitHub",
+        },
+        {
+          icon: <FaExternalLinkAlt />,
+          url: "https://hireset.com",
+          tooltip: "Live Demo",
+        },
+      ],
+    },
+    {
       name: "UIvault",
       logo: "./logo.png",
-      duration: "06.2025 — Present",
+      duration: "06.2025 — 06.2026",
       description: [
         "Developed a comprehensive React UI component library that supports multiple themes, including dark, light, and custom variations.",
         "Implemented a flexible theming system with JSX & TSX support, allowing developers to import components seamlessly in any project.",
         "Created a CLI tool to add and scaffold components dynamically, improving development efficiency.",
-        "Documented the library with examples and usage guides, making onboarding simple for new developers.",
       ],
       tags: [
         "React.js",
@@ -49,6 +82,38 @@ export default function ProjectSection({ darkMode }) {
         },
       ],
     },
+    {
+      name: "FormHub",
+      logo: "./formhub.png",
+      duration: "05.2025 — Present",
+      description: [
+        "Developed a full-stack form builder platform that enables users to create, publish, and manage custom forms without coding.",
+        "Implemented drag-and-drop form creation, real-time response collection, and analytics dashboard for tracking submissions.",
+        "Integrated secure authentication, MongoDB database management, and responsive UI for seamless form creation across devices.",
+      ],
+      tags: [
+        "Next.js",
+        "Node.js",
+        "MongoDB",
+        "React.js",
+        "Tailwind CSS",
+        "Authentication",
+        "Form Builder",
+      ],
+      links: [
+        {
+          icon: <FaGithub />,
+          url: "https://github.com/yourusername/formhub",
+          tooltip: "GitHub",
+        },
+        {
+          icon: <FaExternalLinkAlt />,
+          url: "https://formhub.yourdomain.com",
+          tooltip: "Live Demo",
+        },
+      ],
+    },
+
     {
       name: "WebbyAI",
       logo: "./simplamo.webp",
@@ -88,7 +153,6 @@ export default function ProjectSection({ darkMode }) {
         "Developed a full-featured code snippet manager for developers to save, organize, and share code efficiently.",
         "Implemented syntax highlighting, categorization, and tagging of snippets for quick retrieval.",
         "Created public and private sharing options with commenting and collaboration capabilities.",
-        "Optimized for performance with lazy loading and efficient database queries to handle large snippet collections.",
       ],
       tags: [
         "React.js",
@@ -184,136 +248,136 @@ export default function ProjectSection({ darkMode }) {
                   exit={{ opacity: 0, y: -30 }}
                   transition={{ duration: 0.5, ease: "easeInOut" }}
                 >
-                <motion.div
-                  className={`py-3 px-0 rounded-md transition-shadow duration-300 flex flex-col md:py-4`}
-                  initial="hidden"
-                  whileInView="visible"
-                  viewport={{ once: false, amount: 0.3 }}
-                  variants={scrollVariant}
-                  transition={{ duration: 0.5, delay: idx * 0.2 }}
-                >
-                  {/* Header */}
-                  <div className="flex items-center gap-2 mt-1">
-                    <div
-                      className={`flex justify-between items-center w-full rounded-md cursor-pointer ${darkMode ? "hover:bg-gray-800" : "hover:bg-gray-100"
-                        }`}
-                      onClick={() => toggleAccordion(idx)}
-                    >
-                      <div className="flex items-center gap-3">
-                        <img
-                          src={proj.logo}
-                          className="h-9 w-9 rounded-full mt-1"
-                          alt={proj.name}
-                        />
-                        <div>
-                          <h2
-                            className={`text-[17.5px] font-bold ${darkMode ? "text-gray-100" : "text-gray-900"
-                              } cl`}
-                          >
-                            {proj.name}
-                          </h2>
-                          <p
-                            className={`text-sm title ${darkMode ? "text-gray-300" : "text-gray-600"
-                              }`}
-                          >
-                            {proj.duration}
-                          </p>
-                        </div>
-                      </div>
-
-                      <div className="flex gap-4">
-                        <div className="flex items-center gap-2">
-                          {proj.links?.map((link, i) => (
-                            <a
-                              key={i}
-                              href={link.url}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              className="relative group text-xl"
+                  <motion.div
+                    className={`py-3 px-0 rounded-md transition-shadow duration-300 flex flex-col md:py-4`}
+                    initial="hidden"
+                    whileInView="visible"
+                    viewport={{ once: false, amount: 0.3 }}
+                    variants={scrollVariant}
+                    transition={{ duration: 0.5, delay: idx * 0.2 }}
+                  >
+                    {/* Header */}
+                    <div className="flex items-center gap-2 mt-1">
+                      <div
+                        className={`flex justify-between items-center w-full rounded-md cursor-pointer ${darkMode ? "hover:bg-gray-800" : "hover:bg-gray-100"
+                          }`}
+                        onClick={() => toggleAccordion(idx)}
+                      >
+                        <div className="flex items-center gap-3 min-w-0">
+                          <img
+                            src={proj.logo}
+                            className="h-9 w-9 rounded-full mt-1 shrink-0"
+                            alt={proj.name}
+                          />
+                          <div className="min-w-0">
+                            <h2
+                              className={`text-[16px] sm:text-[17.5px] font-bold truncate ${darkMode ? "text-gray-100" : "text-gray-900"
+                                } cl`}
                             >
-                              <span
-                                className={`${darkMode
-                                  ? "text-gray-300 hover:text-gray-100"
-                                  : "text-gray-600 hover:text-black"
-                                  } transition-colors`}
-                              >
-                                {link.icon}
-                              </span>
-                              <span className="absolute bottom-full mb-2 hidden group-hover:flex bg-black text-white text-xs px-2 py-1 rounded-md whitespace-nowrap shadow-lg">
-                                {link.tooltip}
-                              </span>
-                            </a>
-                          ))}
+                              {proj.name}
+                            </h2>
+                            <p
+                              className={`text-xs sm:text-sm title truncate ${darkMode ? "text-gray-300" : "text-gray-600"
+                                }`}
+                            >
+                              {proj.duration}
+                            </p>
+                          </div>
                         </div>
 
-                        <motion.div
-                          animate={{ rotate: isExpanded ? 180 : 0 }}
-                          transition={{ duration: 0.3 }}
-                        >
-                          {isExpanded ? (
-                            <FiChevronUp size={20} />
-                          ) : (
-                            <FiChevronDown size={20} />
-                          )}
-                        </motion.div>
+                        <div className="flex gap-4">
+                          <div className="flex items-center gap-2">
+                            {proj.links?.map((link, i) => (
+                              <a
+                                key={i}
+                                href={link.url}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="relative group text-xl"
+                              >
+                                <span
+                                  className={`${darkMode
+                                    ? "text-gray-300 hover:text-gray-100"
+                                    : "text-gray-600 hover:text-black"
+                                    } transition-colors`}
+                                >
+                                  {link.icon}
+                                </span>
+                                <span className="absolute bottom-full mb-2 hidden group-hover:flex bg-black text-white text-xs px-2 py-1 rounded-md whitespace-nowrap shadow-lg">
+                                  {link.tooltip}
+                                </span>
+                              </a>
+                            ))}
+                          </div>
+
+                          <motion.div
+                            animate={{ rotate: isExpanded ? 180 : 0 }}
+                            transition={{ duration: 0.3 }}
+                          >
+                            {isExpanded ? (
+                              <FiChevronUp size={20} />
+                            ) : (
+                              <FiChevronDown size={20} />
+                            )}
+                          </motion.div>
+                        </div>
                       </div>
                     </div>
-                  </div>
 
-                  {/* Expandable Section */}
-                  <AnimatePresence initial={false}>
-                    {isExpanded && (
-                      <motion.div
-                        key="content"
-                        initial={{ opacity: 0, height: 0 }}
-                        animate={{ opacity: 1, height: "auto" }}
-                        exit={{ opacity: 0, height: 0 }}
-                        transition={{ duration: 0.5, ease: "easeInOut" }}
-                        className="overflow-hidden ml-2"
-                      >
-                        <motion.ul
-                          className={`space-y-2 text-sm title mt-2 ${darkMode ? "text-gray-300" : "text-gray-800"
-                            }`}
-                          initial="hidden"
-                          animate="visible"
-                          exit="hidden"
-                          variants={{
-                            visible: { transition: { staggerChildren: 0.1 } },
-                          }}
+                    {/* Expandable Section */}
+                    <AnimatePresence initial={false}>
+                      {isExpanded && (
+                        <motion.div
+                          key="content"
+                          initial={{ opacity: 0, height: 0 }}
+                          animate={{ opacity: 1, height: "auto" }}
+                          exit={{ opacity: 0, height: 0 }}
+                          transition={{ duration: 0.5, ease: "easeInOut" }}
+                          className="overflow-hidden ml-2"
                         >
-                          {proj.description.map((desc, i) => (
-                            <motion.li
-                              key={i}
-                              variants={listVariant}
-                              transition={{ duration: 0.1, ease: "easeOut" }}
-                              className="leading-relaxed opacity-90"
-                            >
-                              • {desc}
-                            </motion.li>
-                          ))}
-                        </motion.ul>
-                      </motion.div>
-                    )}
-                  </AnimatePresence>
+                          <motion.ul
+                            className={`space-y-2 text-sm title mt-2 ${darkMode ? "text-gray-300" : "text-gray-800"
+                              }`}
+                            initial="hidden"
+                            animate="visible"
+                            exit="hidden"
+                            variants={{
+                              visible: { transition: { staggerChildren: 0.1 } },
+                            }}
+                          >
+                            {proj.description.map((desc, i) => (
+                              <motion.li
+                                key={i}
+                                variants={listVariant}
+                                transition={{ duration: 0.1, ease: "easeOut" }}
+                                className="leading-relaxed opacity-90"
+                              >
+                                • {desc}
+                              </motion.li>
+                            ))}
+                          </motion.ul>
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
 
-                  {/* Tags (Always Visible) */}
-                  <div className="flex flex-wrap gap-2 mt-5 ml-2 text-xs pb-3">
-                    {proj.tags.map((tag) => (
-                      <span
-                        key={tag}
-                        className={`px-2.5 py-0.5 rounded-full border text-[11px] md:text-xs title ${darkMode
-                          ? "bg-gray-800 border-gray-700 text-gray-200"
-                          : "bg-gray-100 border-gray-300 text-gray-800"
-                          }`}
-                      >
-                        {tag}
-                      </span>
-                    ))}
+                    {/* Tags (Always Visible) */}
+                    <div className="flex flex-wrap gap-2 mt-5 ml-2 text-xs pb-3">
+                      {proj.tags.map((tag) => (
+                        <span
+                          key={tag}
+                          className={`px-2.5 py-0.5 rounded-full border text-[11px] md:text-xs title ${darkMode
+                            ? "bg-gray-800 border-gray-700 text-gray-200"
+                            : "bg-gray-100 border-gray-300 text-gray-800"
+                            }`}
+                        >
+                          {tag}
+                        </span>
+                      ))}
+                    </div>
+                  </motion.div>
+                  <div className="w-[100vw] relative left-[50%] right-[50%] -ml-[50vw] -mr-[50vw]">
+                    <HorizontalDivider darkMode={darkMode} className="w-full" />
                   </div>
-                </motion.div>
-                <div className="w-[100vw] relative left-[50%] right-[50%] -ml-[50vw] -mr-[50vw]">
-                  <HorizontalDivider darkMode={darkMode} className="w-full" />
-                </div>
                 </motion.div>
               );
             })}
@@ -323,11 +387,10 @@ export default function ProjectSection({ darkMode }) {
             <motion.div layout initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="flex justify-center mt-6 mb-2">
               <button
                 onClick={() => setVisibleCount((prev) => prev + 3)}
-                className={`px-4 py-2 rounded-md font-medium text-sm transition-colors ${
-                  darkMode
-                    ? "bg-gray-800 text-white hover:bg-gray-700"
-                    : "bg-gray-100 text-gray-900 hover:bg-gray-200"
-                }`}
+                className={`title px-4 py-2 rounded-md font-medium text-sm transition-colors ${darkMode
+                  ? "bg-gray-800 text-white hover:bg-gray-700"
+                  : "bg-gray-100 text-gray-900 hover:bg-gray-200"
+                  }`}
               >
                 Show More Projects
               </button>
@@ -337,11 +400,10 @@ export default function ProjectSection({ darkMode }) {
             <motion.div layout initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="flex justify-center mt-6 mb-2">
               <button
                 onClick={() => setVisibleCount(3)}
-                className={`px-4 py-2 rounded-md font-medium text-sm transition-colors ${
-                  darkMode
-                    ? "bg-gray-800 text-white hover:bg-gray-700"
-                    : "bg-gray-100 text-gray-900 hover:bg-gray-200"
-                }`}
+                className={`px-4 title py-2 rounded-md font-medium text-sm transition-colors ${darkMode
+                  ? "bg-gray-800 text-white hover:bg-gray-700"
+                  : "bg-gray-100 text-gray-900 hover:bg-gray-200"
+                  }`}
               >
                 Show Less
               </button>

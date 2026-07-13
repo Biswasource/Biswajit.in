@@ -184,7 +184,7 @@ const Hero = ({ darkMode }) => {
                         animate={{ opacity: 1, y: 0 }}
                         exit={{ opacity: 0, y: -8 }}
                         transition={{ duration: 0.3, ease: "easeOut" }}
-                        className={`title text-[14px] mt-1 font-medium tracking-wide ${darkMode ? "text-zinc-300" : "text-zinc-900"}`}
+                        className={` text-[14px] mt-1 font-medium tracking-wide ${darkMode ? "text-zinc-300" : "text-zinc-900"}`}
                       >
                         {roles[roleIndex]}
                       </motion.p>

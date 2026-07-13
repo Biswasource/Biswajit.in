@@ -90,7 +90,7 @@ const AboutSocialLinks = ({ darkMode }) => {
         <div
           id="about"
           className={`w-full max-w-3xl border-l border-r ${darkMode ? "bg-black text-gray-200 border-zinc-800" : "bg-white text-gray-900 border-gray-300"
-            } p-6 sm:px-4 md:px-2 flex flex-col md:flex-row items-center gap-6 md:gap-2`}
+            }  sm:px-4 md:px-2 flex flex-col md:flex-row items-center gap-6 md:gap-2`}
         >
           {/* Social Links Grid */}
           <div
@@ -102,7 +102,9 @@ const AboutSocialLinks = ({ darkMode }) => {
           {/* About Section */}
           <div className="">
             <motion.h2
-              className={`text-2xl px-3 sm:text-3xl font-bold ${darkMode ? "text-white" : "text-black"
+              className={`text-3xl px-3 sm:text-4xl font-extrabold tracking-tight title ${darkMode
+                ? "bg-clip-text text-transparent bg-gradient-to-r from-white to-gray-400"
+                : "bg-clip-text text-transparent bg-gradient-to-r from-black to-gray-600"
                 }`}
               initial="hidden"
               whileInView="visible"
@@ -119,7 +121,7 @@ const AboutSocialLinks = ({ darkMode }) => {
             {paragraphs.map((para, i) => (
               <motion.p
                 key={i}
-                className={`md:p-2 mt-2 sm:p-1  leading-relaxed  text-sm sm:text-sm title ${darkMode
+                className={`md:p-2 px-3 mt-6 sm:p-1  leading-relaxed  text-sm sm:text-sm title ${darkMode
                   ? "text-gray-200"
                   : i === 0
                     ? "text-black"

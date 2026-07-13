@@ -96,10 +96,10 @@ export default function Profile() {
         } min-h-screen font-mono`}
     >
       <header
-        className={`flex flex-col sm:flex-row justify-center transition-all duration-300 ${scrolled
+        className={`w-full flex flex-col sm:flex-row justify-center transition-all duration-300 ${scrolled
           ? `${darkMode ? "bg-black/60 " : "bg-white/70 "}  backdrop-blur-md `
           : `${darkMode ? "bg-black" : "bg-white"} border-transparent`
-          }  sticky top-0 z-50`}
+          }  fixed top-0 left-0 z-50`}
       >
         <div className="flex items-center justify-between w-full max-w-3xl py-3 px-4 sm:py-4 sm:px-8">
           {/* Logo */}
@@ -248,7 +248,7 @@ export default function Profile() {
       </header>
 
       {/* Hero Banner Image */}
-      <div className="w-full px-4 sm:px-6 flex justify-center mb-3">
+      <div className="w-full px-4 sm:px-6 flex justify-center mb-3 pt-[64px] sm:pt-[72px]">
         <div className={`w-full max-w-3xl border-l border-r relative h-[250px] sm:h-[250px] md:h-[250px] overflow-hidden ${darkMode ? 'border-zinc-800' : 'border-gray-300'}`}>
           <img
             src="https://plus.unsplash.com/premium_photo-1673859054724-d3ce699da39d?fm=jpg&q=60&w=3000&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8c25vdyUyMG1vdW50YWlufGVufDB8fDB8fHww"
@@ -258,18 +258,18 @@ export default function Profile() {
 
           {/* Blurred fade effect at the bottom */}
           <div
-            className="absolute bottom-0 left-0 right-0 h-32 backdrop-blur-md"
+            className="absolute bottom-0 left-0 right-0 h-32 backdrop-blur-md pointer-events-none"
             style={{ WebkitMaskImage: 'linear-gradient(to bottom, transparent, black 100%)', maskImage: 'linear-gradient(to bottom, transparent, black 100%)' }}
           ></div>
 
           {/* Bottom side fade to blend into the background */}
           <div
-            className={`absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-95% ${darkMode ? "to-black" : "to-white"}`}
+            className={`absolute inset-0 pointer-events-none bg-gradient-to-b from-transparent via-transparent to-95% ${darkMode ? "to-black" : "to-white"}`}
           ></div>
 
           {/* Optional top fade so it doesn't clash abruptly with the sticky navbar if scrolled */}
           <div
-            className={`absolute inset-0 bg-gradient-to-t from-transparent via-transparent ${darkMode ? "to-black/30" : "to-white/30"}`}
+            className={`absolute inset-0 pointer-events-none bg-gradient-to-t from-transparent via-transparent ${darkMode ? "to-black/30" : "to-white/30"}`}
           ></div>
         </div>
       </div>
