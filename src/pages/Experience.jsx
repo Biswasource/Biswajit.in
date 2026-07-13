@@ -1,7 +1,8 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import { FaCode } from "react-icons/fa";
 import { FiChevronDown, FiChevronUp } from "react-icons/fi";
 import { motion, AnimatePresence } from "framer-motion";
+import HorizontalDivider from "../components/HorizontalDivider";
 
 export default function Experience({ darkMode }) {
   const [expandedIdxs, setExpandedIdxs] = useState([0, 1]); // expanded by default
@@ -58,160 +59,151 @@ export default function Experience({ darkMode }) {
   };
 
   return (
-    <div
-      className={`min-h-screen  relative mt-2 ${
-        darkMode ? "bg-black text-gray-200" : "bg-white text-gray-900"
-      }`}
-    >
-      <div
-        className={`max-w-3xl w-full mx-auto rounded-md ${
-          darkMode ? "bg-black text-white" : "bg-white text-black"
-        } p-4`}
+    <div className="w-full px-4 sm:px-6 flex justify-center">
+      <div id="experience"
+        className={`w-full max-w-3xl border-l border-r ${darkMode ? "bg-black text-gray-200 border-zinc-800" : "bg-white text-gray-900 border-gray-300"
+          } py-4 px-4 sm:px-4 md:px-4`}
       >
-        <h1
-          className={`text-3xl font-bold border-b pb-4 mb-4 cl ${
-            darkMode ? "border-gray-700" : "border-gray-300"
-          }`}
-        >
+        <h1 className="text-3xl font-bold pb-2 cl">
           Experience
         </h1>
+        <div className="w-[100vw] relative left-[50%] right-[50%] -ml-[50vw] -mr-[50vw]">
+          <HorizontalDivider darkMode={darkMode} className="w-full" />
+        </div>
 
         {experiences.map((exp, idx) => {
           const isExpanded = expandedIdxs.includes(idx);
           return (
-            <motion.div
-              key={idx}
-              className={`p-3 rounded-md mb-3 border-b transition-shadow duration-300 ${
-                darkMode ? "border-gray-700 " : "border-gray-300"
-              }`}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: false, amount: 0.3 }}
-              variants={scrollVariant}
-              transition={{ duration: 0.4, delay: idx * 0.2 }}
-            >
-              {/* Header */}
-              <div className="flex items-center justify-between cursor-pointer">
-                <div className="flex items-center gap-3 cl">
-                  <img
-                    src={exp.logo}
-                    className="h-8 w-8 rounded-full mt-1"
-                    alt={exp.company}
-                  />
-                  <h2 className="text-[17.5px] font-bold cl">{exp.company}</h2>
+            <React.Fragment key={idx}>
+              <motion.div
+                className={`p-3 rounded-md transition-shadow duration-300`}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: false, amount: 0.3 }}
+                variants={scrollVariant}
+                transition={{ duration: 0.4, delay: idx * 0.2 }}
+              >
+                {/* Header */}
+                <div className="flex items-center justify-between cursor-pointer">
+                  <div className="flex items-center gap-3 cl">
+                    <img
+                      src={exp.logo}
+                      className="h-8 w-8 rounded-full mt-1"
+                      alt={exp.company}
+                    />
+                    <h2 className="text-[17.5px] font-bold cl">{exp.company}</h2>
+                  </div>
                 </div>
-              </div>
 
-              {/* Role & Duration */}
-              <div className="flex items-center gap-2 mt-2">
-                <div
-                  className={`relative flex items-center justify-center w-8 h-8 rounded-xl shadow-[inset_0_0_0_1px_#e5e5e5] ${
-                    darkMode
+                {/* Role & Duration */}
+                <div className="flex items-center gap-2 mt-1">
+                  <div
+                    className={`relative flex items-center justify-center w-8 h-8 rounded-xl shadow-[inset_0_0_0_1px_#e5e5e5] ${darkMode
                       ? "bg-gray-800 border-gray-700"
                       : "bg-zinc-50 border-white"
-                  }`}
-                >
-                  <div
-                    className={`absolute inset-0.5 rounded-md border ${
-                      darkMode ? "border-gray-600" : "border-zinc-200"
-                    }`}
-                  />
-                  <FaCode
-                    className={`${
-                      darkMode ? "text-gray-200" : "text-gray-500"
-                    }`}
-                  />
-                </div>
-
-                <div
-                  className={`flex justify-between items-center w-full py-2 px-2 rounded-md cursor-pointer ${
-                    darkMode ? "hover:bg-gray-800" : "hover:bg-gray-100"
-                  }`}
-                  onClick={() => toggleAccordion(idx)}
-                >
-                  <div>
-                    <h3 className="text-base font-semibold mt-2 cl">
-                      {exp.role}
-                    </h3>
-                    <p className="text-sm title">{exp.duration}</p>
+                      }`}
+                  >
+                    <div
+                      className={`absolute inset-0.5 rounded-md border ${darkMode ? "border-gray-600" : "border-zinc-200"
+                        }`}
+                    />
+                    <FaCode
+                      className={`${darkMode ? "text-gray-200" : "text-gray-500"
+                        }`}
+                    />
                   </div>
-                  {/* Expand/Collapse Icon */}
-                  <motion.div
-                    animate={{ rotate: isExpanded ? 180 : 0 }}
-                    transition={{ duration: 0.3 }}
-                  >
-                    {isExpanded ? (
-                      <FiChevronUp size={20} />
-                    ) : (
-                      <FiChevronDown size={20} />
-                    )}
-                  </motion.div>
-                </div>
-              </div>
 
-              {/* Expandable Section */}
-              <AnimatePresence initial={false}>
-                {isExpanded && (
-                  <motion.div
-                    key="content"
-                    initial={{ opacity: 0, height: 0 }}
-                    animate={{ opacity: 1, height: "auto" }}
-                    exit={{ opacity: 0, height: 0 }}
-                    transition={{ duration: 0.5, ease: "easeInOut" }}
-                    className="overflow-hidden mt-4 md:ml-6 ml-2"
+                  <div
+                    className={`flex justify-between items-center w-full py-1 px-2 rounded-md cursor-pointer ${darkMode ? "hover:bg-gray-800" : "hover:bg-gray-100"
+                      }`}
+                    onClick={() => toggleAccordion(idx)}
                   >
-                    <motion.ul
-                      className="space-y-2 text-sm title"
-                      initial="hidden"
-                      animate="visible"
-                      exit="hidden"
-                      variants={{
-                        visible: {
-                          transition: {
-                            staggerChildren: 0.1,
-                          },
-                        },
-                      }}
+                    <div>
+                      <h3 className="text-base font-semibold  cl">
+                        {exp.role}
+                      </h3>
+                      <p className="text-sm title">{exp.duration}</p>
+                    </div>
+                    {/* Expand/Collapse Icon */}
+                    <motion.div
+                      animate={{ rotate: isExpanded ? 180 : 0 }}
+                      transition={{ duration: 0.3 }}
                     >
-                      {exp.description.map((desc, i) => (
-                        <motion.li
-                          key={i}
-                          variants={listVariant}
-                          transition={{ duration: 0.1, ease: "easeOut" }}
-                        >
-                          • {desc}
-                        </motion.li>
-                      ))}
-                    </motion.ul>
+                      {isExpanded ? (
+                        <FiChevronUp size={20} />
+                      ) : (
+                        <FiChevronDown size={20} />
+                      )}
+                    </motion.div>
+                  </div>
+                </div>
 
-                    <div className="flex flex-wrap gap-2 mt-6 text-xs">
-                      {[
-                        "React.js",
-                        "Next.js",
-                        "Node.js",
-                        "Express",
-                        "MongoDB",
-                        "Tailwind CSS",
+                {/* Expandable Section */}
+                <AnimatePresence initial={false}>
+                  {isExpanded && (
+                    <motion.div
+                      key="content"
+                      initial={{ opacity: 0, height: 0 }}
+                      animate={{ opacity: 1, height: "auto" }}
+                      exit={{ opacity: 0, height: 0 }}
+                      transition={{ duration: 0.5, ease: "easeInOut" }}
+                      className="overflow-hidden mt-4 md:ml-1 ml-1"
+                    >
+                      <motion.ul
+                        className="space-y-2 text-sm title"
+                        initial="hidden"
+                        animate="visible"
+                        exit="hidden"
+                        variants={{
+                          visible: {
+                            transition: {
+                              staggerChildren: 0.1,
+                            },
+                          },
+                        }}
+                      >
+                        {exp.description.map((desc, i) => (
+                          <motion.li
+                            key={i}
+                            variants={listVariant}
+                            transition={{ duration: 0.1, ease: "easeOut" }}
+                          >
+                            • {desc}
+                          </motion.li>
+                        ))}
+                      </motion.ul>
 
-                        "UI/UX Design",
-                        "API Integration",
-                      ].map((tag) => (
-                        <span
-                          key={tag}
-                          className={`px-3 py-1 rounded-full border text-xs md:text-sm title ${
-                            darkMode
+                      <div className="flex flex-wrap gap-2 mt-6 text-xs">
+                        {[
+                          "React.js",
+                          "Next.js",
+                          "Node.js",
+                          "Express",
+                          "MongoDB",
+                          "Tailwind CSS",
+
+                          "UI/UX Design",
+                          "API Integration",
+                        ].map((tag) => (
+                          <span
+                            key={tag}
+                            className={`px-2.5 py-0.5 rounded-full border text-[11px] md:text-xs title ${darkMode
                               ? "bg-gray-800 border-gray-700 text-gray-200"
                               : "bg-gray-100 border-gray-300 text-gray-800"
-                          }`}
-                        >
-                          {tag}
-                        </span>
-                      ))}
-                    </div>
-                  </motion.div>
-                )}
-              </AnimatePresence>
-            </motion.div>
+                              }`}
+                          >
+                            {tag}
+                          </span>
+                        ))}
+                      </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </motion.div>
+              <div className="w-[100vw] relative left-[50%] right-[50%] -ml-[50vw] -mr-[50vw]">
+                <HorizontalDivider darkMode={darkMode} className="w-full" />
+              </div>
+            </React.Fragment>
           );
         })}
       </div>

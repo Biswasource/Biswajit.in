@@ -1,5 +1,7 @@
 import React from "react";
 import { motion } from "framer-motion";
+import StripedDivider from "../components/StripedDivider";
+import HorizontalDivider from "../components/HorizontalDivider";
 
 const socials = [
   {
@@ -80,56 +82,65 @@ const AboutSocialLinks = ({ darkMode }) => {
   ];
 
   return (
-    <div
-      className={`flex justify-center items-center px-4 sm:px-6 py-2 relative`}
-    >
+    <>
+      <StripedDivider darkMode={darkMode} height="h-8" className="w-full" />
       <div
-        className={`w-full max-w-3xl rounded-2xl p-2 sm:p-2 md:p-0 ${darkMode ? "bg-black" : "bg-white"
-          }`}
+        className={`flex justify-center items-center px-2 sm:px-2  relative`}
       >
-        {/* Social Links Grid */}
         <div
-          className={`grid grid-cols-1 sm:grid-cols-2 divide-y sm:divide-y-0 sm:divide-x rounded-xl overflow-hidden cursor-pointer cl`}
+          id="about"
+          className={`w-full max-w-3xl border-l border-r ${darkMode ? "bg-black text-gray-200 border-zinc-800" : "bg-white text-gray-900 border-gray-300"
+            } p-6 sm:px-4 md:px-2 flex flex-col md:flex-row items-center gap-6 md:gap-2`}
         >
-
-        </div>
-
-        {/* About Section */}
-        <div className="mt-10">
-          <motion.h2
-            className={`text-2xl sm:text-3xl font-bold mb-4 ${darkMode ? "text-white" : "text-black"
-              }`}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: false, amount: 0.3 }}
-            custom={0}
-            variants={blurVariant}
+          {/* Social Links Grid */}
+          <div
+            className={`grid grid-cols-1 sm:grid-cols-2 divide-y sm:divide-y-0 sm:divide-x rounded-xl overflow-hidden cursor-pointer cl`}
           >
-            About
-          </motion.h2>
 
-          {paragraphs.map((para, i) => (
-            <motion.p
-              key={i}
-              className={`leading-relaxed mb-4 text-sm sm:text-sm title ${darkMode
-                ? "text-gray-200"
-                : i === 0
-                  ? "text-black"
-                  : "text-gray-900"
+          </div>
+
+          {/* About Section */}
+          <div className="">
+            <motion.h2
+              className={`text-2xl px-3 sm:text-3xl font-bold ${darkMode ? "text-white" : "text-black"
                 }`}
-              style={{ color: darkMode ? "#e5e7eb" : undefined }} // optional override
               initial="hidden"
               whileInView="visible"
               viewport={{ once: false, amount: 0.3 }}
-              custom={i + 1}
+              custom={0}
               variants={blurVariant}
             >
-              {para}
-            </motion.p>
-          ))}
+              About
+            </motion.h2>
+
+            <div className="w-[100vw] relative left-[50%] right-[50%] -ml-[50vw] -mr-[50vw]">
+              <HorizontalDivider darkMode={darkMode} className="w-full" />
+            </div>
+            {paragraphs.map((para, i) => (
+              <motion.p
+                key={i}
+                className={`md:p-2 mt-2 sm:p-1  leading-relaxed  text-sm sm:text-sm title ${darkMode
+                  ? "text-gray-200"
+                  : i === 0
+                    ? "text-black"
+                    : "text-gray-900"
+                  }`}
+                style={{ color: darkMode ? "#e5e7eb" : undefined }} // optional override
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: false, amount: 0.3 }}
+                custom={i + 1}
+                variants={blurVariant}
+              >
+                {para}
+              </motion.p>
+            ))}
+          </div>
         </div>
       </div>
-    </div>
+
+      <StripedDivider darkMode={darkMode} height="h-8" className="w-full" />
+    </>
   );
 };
 

@@ -22,6 +22,7 @@ import EducationSection from "../pages/EducationSection";
 import AIChatbot from "./AIChatbot";
 import Footer from "./Footer";
 import Hero from "./Hero";
+import SearchDialog from "./SearchDialog";
 import { FaVolumeUp } from "react-icons/fa";
 import { Link } from "react-router";
 import { HiSun, HiMoon, HiMenu, HiX } from "react-icons/hi";
@@ -38,6 +39,18 @@ export default function Profile() {
   const [darkMode, setDarkMode] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [searchOpen, setSearchOpen] = useState(false);
+
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if ((e.ctrlKey || e.metaKey) && e.key === "k") {
+        e.preventDefault();
+        setSearchOpen(true);
+      }
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, []);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -137,16 +150,19 @@ export default function Profile() {
                 Components
               </a>
             </nav>
-            <div className={`relative flex items-center group border transition-all duration-300 rounded-xl px-2 ${darkMode
-              ? "bg-zinc-900 border-zinc-800 focus-within:border-blue-500/50"
-              : "bg-zinc-50 border-zinc-200 focus-within:border-blue-500/50"
-              }`}>
-              <FaSearch className={`absolute left-2.5 text-xs transition-colors ${darkMode ? "text-zinc-500 group-focus-within:text-blue-500" : "text-zinc-400 group-focus-within:text-blue-500"
+            <div
+              onClick={() => setSearchOpen(true)}
+              className={`relative flex items-center group border transition-all duration-300 rounded-xl px-2 cursor-pointer ${darkMode
+                ? "bg-zinc-900 border-zinc-800 hover:border-zinc-700"
+                : "bg-zinc-50 border-zinc-200 hover:border-zinc-300"
+                }`}>
+              <FaSearch className={`absolute left-2.5 text-xs transition-colors ${darkMode ? "text-zinc-500 group-hover:text-zinc-300" : "text-zinc-400 group-hover:text-zinc-600"
                 }`} />
               <input
                 type="text"
                 placeholder="Ctrl K"
-                className={`pl-8 pr-2 py-1.5 text-xs sm:text-sm w-24 sm:w-32 bg-transparent focus:outline-none title transition-colors ${darkMode ? "text-white placeholder-zinc-600" : "text-zinc-900 placeholder-zinc-400"
+                readOnly
+                className={`pl-8 pr-2 py-1.5 text-xs sm:text-sm w-24 sm:w-32 bg-transparent focus:outline-none title cursor-pointer transition-colors ${darkMode ? "text-white placeholder-zinc-600" : "text-zinc-900 placeholder-zinc-400"
                   }`}
               />
             </div>
@@ -231,11 +247,38 @@ export default function Profile() {
         )}
       </header>
 
+      {/* Hero Banner Image */}
+      <div className="w-full px-4 sm:px-6 flex justify-center mb-3">
+        <div className={`w-full max-w-3xl border-l border-r relative h-[250px] sm:h-[250px] md:h-[250px] overflow-hidden ${darkMode ? 'border-zinc-800' : 'border-gray-300'}`}>
+          <img
+            src="https://plus.unsplash.com/premium_photo-1673859054724-d3ce699da39d?fm=jpg&q=60&w=3000&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8c25vdyUyMG1vdW50YWlufGVufDB8fDB8fHww"
+            alt="Setup Desk"
+            className="w-full h-full object-cover object-[center_25%]"
+          />
+
+          {/* Blurred fade effect at the bottom */}
+          <div
+            className="absolute bottom-0 left-0 right-0 h-32 backdrop-blur-md"
+            style={{ WebkitMaskImage: 'linear-gradient(to bottom, transparent, black 100%)', maskImage: 'linear-gradient(to bottom, transparent, black 100%)' }}
+          ></div>
+
+          {/* Bottom side fade to blend into the background */}
+          <div
+            className={`absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-95% ${darkMode ? "to-black" : "to-white"}`}
+          ></div>
+
+          {/* Optional top fade so it doesn't clash abruptly with the sticky navbar if scrolled */}
+          <div
+            className={`absolute inset-0 bg-gradient-to-t from-transparent via-transparent ${darkMode ? "to-black/30" : "to-white/30"}`}
+          ></div>
+        </div>
+      </div>
+
       <BackgroundGrid darkMode={darkMode}>
         <Hero darkMode={darkMode} speakName={speakName} isSpeaking={isSpeaking} />
-
-        <AboutSocialLinks darkMode={darkMode} />
         <GithubContribution darkMode={darkMode} />
+        <AboutSocialLinks darkMode={darkMode} />
+
         <TechStack darkMode={darkMode} />
         <ExperienceSection darkMode={darkMode} />
         <ProjectSection darkMode={darkMode} />
@@ -246,6 +289,11 @@ export default function Profile() {
       <Footer darkMode={darkMode} />
 
       {/* AI Chatbot Assistant */}
+      <SearchDialog
+        isOpen={searchOpen}
+        onClose={() => setSearchOpen(false)}
+        darkMode={darkMode}
+      />
     </div>
   );
 }

@@ -9,26 +9,6 @@ export default function AIChatbot({ darkMode }) {
   const [isTyping, setIsTyping] = useState(false);
   const messagesEndRef = useRef(null);
 
-  // Typewriter effect for the thought bubble
-  const [bubbleText, setBubbleText] = useState("");
-  const fullBubbleText = "Ask me anything!";
-
-  useEffect(() => {
-    if (!isOpen) {
-      let i = 0;
-      setBubbleText("");
-      const timer = setInterval(() => {
-        if (i < fullBubbleText.length) {
-          setBubbleText(fullBubbleText.slice(0, i + 1));
-          i++;
-        } else {
-          clearInterval(timer);
-        }
-      }, 80); // Typing speed
-      return () => clearInterval(timer);
-    }
-  }, [isOpen]);
-
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
   };
@@ -414,65 +394,26 @@ export default function AIChatbot({ darkMode }) {
 
   return (
     <>
-      {/* Floating Chat Button & Thought Bubble */}
+      {/* Floating Chat Button */}
       <AnimatePresence>
         {!isOpen && (
-          <div className="fixed bottom-6 right-10 z-50 flex flex-col items-end pointer-events-none">
-            {/* Animated Thought Bubble */}
-            <motion.div
-              initial={{ opacity: 0, y: 10, scale: 0.8 }}
-              animate={{ opacity: 1, y: 0, scale: 1 }}
-              exit={{ opacity: 0, scale: 0.8 }}
-              transition={{ delay: 0.5, type: "spring", stiffness: 200, damping: 15 }}
-              className="pointer-events-auto"
-            >
-              <motion.div
-                animate={{ y: [0, -5, 0] }}
-                transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
-                className={`mb-3 mr-4 px-4 py-2.5 rounded-2xl rounded-br-sm shadow-xl text-sm font-medium border relative cursor-pointer ${
-                  darkMode 
-                    ? "bg-zinc-800 border-zinc-700 text-zinc-200" 
-                    : "bg-white border-zinc-200 text-zinc-700"
-                }`}
-                onClick={() => setIsOpen(true)}
-              >
-                <div className="flex items-center gap-2 h-6">
-                  <span className="text-lg">💭</span>
-                  <span className="bg-clip-text text-transparent bg-gradient-to-r from-emerald-400 to-cyan-400 font-bold">
-                    {bubbleText}
-                    <motion.span
-                      animate={{ opacity: [1, 0] }}
-                      transition={{ duration: 0.8, repeat: Infinity, ease: "linear" }}
-                      className="inline-block w-1.5 h-4 ml-0.5 align-middle bg-cyan-400"
-                    />
-                  </span>
-                </div>
-                {/* Tail of the thought bubble */}
-                <div className={`absolute -bottom-2 right-4 w-3 h-3 rotate-45 border-b border-r ${
-                  darkMode ? "bg-zinc-800 border-zinc-700" : "bg-white border-zinc-200"
-                }`}></div>
-              </motion.div>
-            </motion.div>
-
-            {/* Cat Button */}
-            <motion.button
-              initial={{ scale: 0, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              exit={{ scale: 0, opacity: 0 }}
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              onClick={() => setIsOpen(true)}
-              className="pointer-events-auto transition-transform "
-            >
-              <div className="flex items-center justify-center">
-                <img
-                  src="/chatbot-cat.png"
-                  alt="AI Chatbot"
-                  className="w-16 h-16 md:w-20 md:h-20 object-cover rounded-full shadow-xl hover:shadow-2xl transition-shadow"
-                />
-              </div>
-            </motion.button>
-          </div>
+          <motion.button
+            initial={{ scale: 0, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            exit={{ scale: 0, opacity: 0 }}
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            onClick={() => setIsOpen(true)}
+            className="fixed bottom-6 right-10 z-50 transition-transform "
+          >
+            <div className="flex items-center justify-center">
+              <img
+                src="/chatbot-cat.png"
+                alt="AI Chatbot"
+                className="w-16 h-16 md:w-20 md:h-20 object-cover rounded-full shadow-xl hover:shadow-2xl transition-shadow"
+              />
+            </div>
+          </motion.button>
         )}
       </AnimatePresence>
 
@@ -536,7 +477,6 @@ export default function AIChatbot({ darkMode }) {
               </button>
             </div>
 
-            {/* Messages Area */}
             <div
               className={`h-[calc(100%-120px)] overflow-y-auto p-3 sm:p-4 space-y-3 ${darkMode ? "bg-black" : "bg-white"
                 }`}

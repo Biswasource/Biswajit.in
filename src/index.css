@@ -185,14 +185,13 @@ html::-webkit-scrollbar, body::-webkit-scrollbar {
   --sidebar-ring: oklch(0.556 0 0);
 }
 
-@keyframes gradient-x {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
+@keyframes shimmer {
+  from { background-position: 200% center; }
+  to { background-position: -200% center; }
 }
 
-.animate-gradient-x {
-  animation: gradient-x 6s ease infinite;
+.animate-shimmer {
+  animation: shimmer 4s linear infinite;
 }
 
 @layer base {

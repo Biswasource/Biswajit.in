@@ -1,4 +1,5 @@
 import React from "react";
+import HorizontalDivider from "../components/HorizontalDivider";
 import ExpressLogo from "../../public/express-svgrepo-com.svg";
 import JavaScript from "../../public/javascript-svgrepo-com.svg";
 import MongoDB from "../../public/mongo-svgrepo-com.svg";
@@ -14,6 +15,7 @@ import radix from "../../public/radixui-light.svg";
 import motion from "../../public/motion.svg";
 import reactrouter from "../../public/react-router-light.svg";
 import git from "../../public/git.svg";
+import StripedDivider from "../components/StripedDivider";
 
 const categories = [
   {
@@ -71,37 +73,44 @@ const Tag = ({ src, name, darkMode }) => (
 
 function StackSection({ darkMode }) {
   return (
-    <section className="title w-full flex flex-col items-center py-2 px-4 relative">
-      <div className="w-full max-w-3xl">
-        <h2 className={`text-3xl font-bold mb-2 ${darkMode ? "text-white" : "text-black"}`}>
-          Stack
-        </h2>
 
-        <div className={`divide-y ${darkMode ? "" : ""}`}>
-          {categories.map((cat) => (
-            <div
-              key={cat.number}
-              className="flex flex-col sm:flex-row sm:items-start gap-3 py-5"
-            >
-              <div className="flex items-baseline gap-2 sm:w-48 flex-shrink-0">
-                <span className={`text-sm font-mono ${darkMode ? "text-zinc-600" : "text-zinc-400"} title`}>
-                  {cat.number}
-                </span>
-                <span className={`title text-base font-medium ${darkMode ? "text-zinc-200" : "text-zinc-800"} title`}>
-                  {cat.label}
-                </span>
-              </div>
+    <>
+      <div className="w-full px-4 sm:px-6 flex justify-center">
+        <section className={`title w-full max-w-3xl border-l border-r ${darkMode ? 'border-zinc-800 bg-black' : 'border-gray-300 bg-white'} py-4 px-4 sm:px-8 md:px-10 relative`}>
+          <h2 className={`text-3xl font-bold pb-2 cl ${darkMode ? "text-white" : "text-black"}`}>
+            Stack
+          </h2>
+          <div className="w-[100vw] relative left-[50%] right-[50%] -ml-[50vw] -mr-[50vw]">
+            <HorizontalDivider darkMode={darkMode} className="w-full" />
+          </div>
 
-              <div className="flex flex-wrap gap-2.5 title">
-                {cat.items.map((item) => (
-                  <Tag key={item.name} src={item.src} name={item.name} darkMode={darkMode} />
-                ))}
+          <div className={`divide-y ${darkMode ? "divide-zinc-800" : "divide-gray-200"} -mx-4 sm:-mx-8 md:-mx-10`}>
+            {categories.map((cat) => (
+              <div
+                key={cat.number}
+                className="flex flex-col sm:flex-row sm:items-start gap-3 py-5 px-4 sm:px-8 md:px-10"
+              >
+                <div className="flex items-baseline gap-2 sm:w-48 flex-shrink-0">
+                  <span className={`text-sm font-mono ${darkMode ? "text-zinc-600" : "text-zinc-400"} title`}>
+                    {cat.number}
+                  </span>
+                  <span className={`title text-base font-medium ${darkMode ? "text-zinc-200" : "text-zinc-800"} title`}>
+                    {cat.label}
+                  </span>
+                </div>
+
+                <div className="flex flex-wrap gap-2.5 title">
+                  {cat.items.map((item) => (
+                    <Tag key={item.name} src={item.src} name={item.name} darkMode={darkMode} />
+                  ))}
+                </div>
               </div>
-            </div>
-          ))}
-        </div>
+            ))}
+          </div>
+        </section>
       </div>
-    </section>
+      <StripedDivider darkMode={darkMode} height="h-8" className="w-full" />
+    </>
   );
 }
 
