@@ -7,6 +7,8 @@ import {
   SiBun,
   SiMongodb
 } from "react-icons/si";
+import { BsGenderMale } from "react-icons/bs";
+import { IoCodeSlashOutline } from "react-icons/io5";
 import {
   FaGithub,
   FaLinkedin,
@@ -24,13 +26,15 @@ import {
   FaBriefcase,
   FaPhone,
   FaMars,
-  FaQuestion
+  FaQuestion,
+  FaLightbulb
 } from "react-icons/fa";
 import { RiTwitterXFill, RiThreadsFill } from "react-icons/ri";
 import { FaBolt } from "react-icons/fa";
 import BDLogo from "./BDlogo";
 import StripedDivider from "./StripedDivider";
 import HorizontalDivider from "./HorizontalDivider";
+import { HiLightBulb } from "react-icons/hi";
 
 const SkillTag = ({ icon, name, darkMode }) => (
   <span
@@ -156,7 +160,7 @@ const Hero = ({ darkMode }) => {
                   <div className={`w-34 h-34 md:w-40 md:h-40 object-cover rounded-full overflow-hidden transition-colors ${darkMode ? "border-zinc-800 bg-zinc-900" : "border-zinc-100 bg-white"
                     }`}>
                     <img
-                      src="/profile.png"
+                      src="/profile.jpeg"
                       alt="Biswajit Das"
                       className="w-full h-full object-cover"
                     />
@@ -245,7 +249,7 @@ const Hero = ({ darkMode }) => {
                   <InfoItem icon={<FaCode size={13} />} text="Backend Developer @shadcncraft" className="title" darkMode={darkMode} />
                   <div className="hidden sm:block" />
 
-                  <InfoItem icon={<FaQuestion size={13} />} text="Founder @Uivault" href="https://uivault.in" className="title" darkMode={darkMode} />
+                  <InfoItem icon={<FaLightbulb size={13} />} text="Founder @Uivault" href="https://uivault.in" className="title" darkMode={darkMode} />
                   <div className="hidden sm:block" />
 
                   <InfoItem icon={<FaMapMarkerAlt size={13} />} text="Cuttack, Odisha" className="title" darkMode={darkMode} />
@@ -255,7 +259,7 @@ const Hero = ({ darkMode }) => {
                   <div className="hidden sm:block" />
 
                   <InfoItem icon={<FaLink size={13} />} text="biswajit.uivault.in" href="https://biswajit.uivault.in" className="title" darkMode={darkMode} />
-                  <InfoItem icon={<FaMars size={13} />} text="he/him" className="title" darkMode={darkMode} />
+                  <InfoItem icon={<BsGenderMale size={13} />} text="he/him" className="title" darkMode={darkMode} />
                 </div>
                 <div className="w-[100vw] relative left-[50%] right-[50%] -ml-[50vw] -mr-[50vw] my-4">
                   <HorizontalDivider darkMode={darkMode} className="w-full" />

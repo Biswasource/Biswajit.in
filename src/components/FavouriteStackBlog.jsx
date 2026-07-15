@@ -1,13 +1,20 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import { HiArrowLeft } from "react-icons/hi";
 import shadcn from "../../public/favstackcover1.png";
 import reacticon from "../../public/favstackcover2.png";
 import supabse from "../../public/supabse.png";
 import motion from "../../public/motion.png";
 import mongodb from "../../public/mongodb.png";
+import HorizontalDivider from "./HorizontalDivider";
+import StripedDivider from "./StripedDivider";
+import TopNavbar from "./TopNavbar";
+import SearchDialog from "./SearchDialog";
+import Footer from "./Footer";
 
 export default function FavStackBlogPost() {
   const [darkMode, setDarkMode] = useState(false);
+  const [searchOpen, setSearchOpen] = useState(false);
 
   // Load theme from localStorage only
   useEffect(() => {
@@ -15,60 +22,59 @@ export default function FavStackBlogPost() {
     setDarkMode(savedTheme);
   }, []);
 
+  const actionBtnClass = `flex items-center justify-center rounded-md transition-colors ${darkMode ? "bg-zinc-800/50 hover:bg-zinc-800 text-zinc-300" : "bg-gray-100 hover:bg-gray-200 text-gray-700"
+    }`;
+
   return (
     <div
-      className={`min-h-screen ${
-        darkMode ? "bg-black text-white" : "bg-white text-gray-900"
-      }`}
+      className={`min-h-screen ${darkMode ? "bg-black text-white" : "bg-white text-gray-900"
+        }`}
     >
-      {/* Header */}
-      <header
-        className={`flex justify-center border-b ${
-          darkMode ? "border-zinc-700" : "border-zinc-200"
-        } sticky top-0 z-50 ${darkMode ? "bg-black" : "bg-white"}`}
-      >
-        <div className="flex items-center justify-center w-full max-w-3xl py-3 px-4 sm:py-4 sm:px-8">
-          <Link
-            to="/"
-            className={`font-bold text-2xl tracking-tight sm:text-3xl ${
-              darkMode ? "text-white" : "text-black"
-            }`}
-          >
-            BD
-          </Link>
-        </div>
-      </header>
+      <TopNavbar
+        darkMode={darkMode}
+        setDarkMode={setDarkMode}
+        searchOpen={searchOpen}
+        setSearchOpen={setSearchOpen}
+      />
+      <SearchDialog
+        isOpen={searchOpen}
+        onClose={() => setSearchOpen(false)}
+        darkMode={darkMode}
+      />
 
-      <div className="flex justify-center px-4 py-12">
-        <article className="max-w-3xl w-full">
-          {/* Back link */}
-          <div className="mb-6">
+      <div className="w-full flex flex-col items-center pt-[80px] pb-10 relative">
+        <HorizontalDivider darkMode={darkMode} className="opacity-50" />
+
+        <article className={`w-full max-w-3xl px-4 sm:px-8 py-8 border-x ${darkMode ? 'border-zinc-800' : 'border-gray-200'}`}>
+          {/* Top Actions Row */}
+          <div className="flex items-center justify-between mb-8">
             <Link
               to="/blog"
-              className={`inline-flex items-center transition-colors ${
-                darkMode
-                  ? "text-gray-400 hover:text-white"
-                  : "text-gray-600 hover:text-black"
-              }`}
+              className={`inline-flex items-center text-sm font-medium transition-colors ${darkMode
+                ? "text-gray-400 hover:text-white"
+                : "text-gray-500 hover:text-black"
+                }`}
             >
-              <span className="mr-1">←</span> Blog
+              <HiArrowLeft className="mr-2 text-lg" /> Blog
             </Link>
           </div>
 
           {/* Title */}
           <h1
-            className={`text-4xl font-bold mb-4 leading-tight ${
-              darkMode ? "text-white" : "text-gray-900"
-            }`}
+            className={`text-3xl sm:text-4xl font-normal tracking-tight leading-[1.1] mb-4 ${darkMode ? "text-white" : "text-gray-950"
+              }`}
           >
             My Favorite Developer Stack — Shadcn, Framer Motion & MongoDB
           </h1>
+        </article>
 
+        <StripedDivider darkMode={darkMode} className="opacity-70" />
+
+        <div className={`w-full max-w-3xl px-4 sm:px-8 py-10 border-x min-h-screen ${darkMode ? 'border-zinc-800' : 'border-gray-200'}`}>
           {/* Body */}
           <div
-            className={`prose prose-neutral max-w-none text-sm title space-y-6 ${
-              darkMode ? "text-gray-300" : "text-black"
-            }`}
+            className={`prose prose-neutral max-w-none text-base font-normal leading-relaxed space-y-6 ${darkMode ? "text-gray-300" : "text-gray-800"
+              }`}
           >
             <p>
               Over the past year of building modern web apps, I've discovered a
@@ -95,12 +101,12 @@ export default function FavStackBlogPost() {
             />
 
             <h2
-              className={`text-xl font-semibold ${
-                darkMode ? "text-white" : "text-gray-900"
-              }`}
+              className={`text-xl font-semibold ${darkMode ? "text-white" : "text-gray-900"
+                }`}
             >
               1. Shadcn/UI — The Modern UI Foundation
             </h2>
+            <HorizontalDivider darkMode={darkMode} className="opacity-40 !my-8 !w-[100vw] relative left-1/2 -translate-x-1/2" />
             <p>
               <strong>Shadcn/UI</strong> has completely changed how I build user
               interfaces. It's built on top of <strong>Radix UI</strong> and{" "}
@@ -124,12 +130,12 @@ export default function FavStackBlogPost() {
             />
 
             <h2
-              className={`text-xl font-semibold ${
-                darkMode ? "text-white" : "text-gray-900"
-              }`}
+              className={`text-xl font-semibold ${darkMode ? "text-white" : "text-gray-900"
+                }`}
             >
               2. Framer Motion — Bringing Life to Components
             </h2>
+            <HorizontalDivider darkMode={darkMode} className="opacity-40 !my-8 !w-[100vw] relative left-1/2 -translate-x-1/2" />
             <p>
               I can't imagine UI without <strong>Framer Motion</strong>. It's
               the secret ingredient that adds soul to my interfaces. With a few
@@ -151,12 +157,12 @@ export default function FavStackBlogPost() {
             />
 
             <h2
-              className={`text-xl font-semibold ${
-                darkMode ? "text-white" : "text-gray-900"
-              }`}
+              className={`text-xl font-semibold ${darkMode ? "text-white" : "text-gray-900"
+                }`}
             >
               3. React Icons — Simple Yet Powerful
             </h2>
+            <HorizontalDivider darkMode={darkMode} className="opacity-40 !my-8 !w-[100vw] relative left-1/2 -translate-x-1/2" />
             <p>
               I use <strong>React Icons</strong> in almost every project. It's
               the easiest way to include icons from popular sets like{" "}
@@ -174,12 +180,12 @@ export default function FavStackBlogPost() {
             />
 
             <h2
-              className={`text-xl font-semibold ${
-                darkMode ? "text-white" : "text-gray-900"
-              }`}
+              className={`text-xl font-semibold ${darkMode ? "text-white" : "text-gray-900"
+                }`}
             >
               4. MongoDB — The Scalable Backend Engine
             </h2>
+            <HorizontalDivider darkMode={darkMode} className="opacity-40 !my-8 !w-[100vw] relative left-1/2 -translate-x-1/2" />
             <p>
               <strong>MongoDB</strong> has become my favorite choice for
               handling backend data. It's fast, flexible, and document-based —
@@ -202,12 +208,12 @@ export default function FavStackBlogPost() {
             />
 
             <h2
-              className={`text-xl font-semibold ${
-                darkMode ? "text-white" : "text-gray-900"
-              }`}
+              className={`text-xl font-semibold ${darkMode ? "text-white" : "text-gray-900"
+                }`}
             >
               5. Supabase — The Open-Source Powerhouse
             </h2>
+            <HorizontalDivider darkMode={darkMode} className="opacity-40 !my-8 !w-[100vw] relative left-1/2 -translate-x-1/2" />
             <p>
               When I need more control or SQL power, I switch to{" "}
               <strong>Supabase</strong>. It's like Firebase but open-source,
@@ -240,8 +246,9 @@ export default function FavStackBlogPost() {
               me. 🚀
             </p>
           </div>
-        </article>
+        </div>
       </div>
+      <Footer darkMode={darkMode} />
     </div>
   );
 }
