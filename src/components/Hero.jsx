@@ -269,7 +269,7 @@ const Hero = ({ darkMode }) => {
                   <SocialButton href="https://twitter.com" icon={<RiTwitterXFill size={22} />} darkMode={darkMode} />
                   <SocialButton href="https://github.com/Biswasource" icon={<FaGithub size={22} />} darkMode={darkMode} />
                   <SocialButton href="https://www.linkedin.com/in/biswajitdas-" icon={<FaLinkedin size={22} />} darkMode={darkMode} />
-                  <SocialButton href="https://instagram.com" icon={<FaInstagram size={22} />} darkMode={darkMode} />
+                  <SocialButton href="https://www.instagram.com/___biswa.__?igsh=MTE5eWNxb3AzdGJocQ==" icon={<FaInstagram size={22} />} darkMode={darkMode} />
 
                   <div className="relative group">
                     <SocialButton
