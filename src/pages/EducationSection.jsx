@@ -76,8 +76,8 @@ export default function EducationSection({ darkMode }) {
               <React.Fragment key={idx}>
                 <div
                   className={`py-3 px-0 rounded-md transition-shadow duration-300 flex flex-col ${darkMode
-                      ? "text-white"
-                      : "text-gray-900"
+                    ? "text-white"
+                    : "text-gray-900"
                     }`}
                 >
                   {/* Header */}
@@ -170,8 +170,8 @@ export default function EducationSection({ darkMode }) {
                             <span
                               key={tag}
                               className={`px-2.5 py-0.5 rounded-full border text-[11px] md:text-xs title ${darkMode
-                                  ? "bg-gray-800 border-zinc-600 text-gray-300"
-                                  : "bg-gray-100 border-gray-300 text-gray-900"
+                                ? "bg-gray-800 border-zinc-600 text-gray-300"
+                                : "bg-gray-100 border-gray-300 text-gray-900"
                                 }`}
                             >
                               {tag}

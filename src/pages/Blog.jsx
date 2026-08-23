@@ -31,14 +31,20 @@ export default function Blog() {
   }, []);
 
   const posts = [
-    // {
-    //   title:
-    //     "Building UIVault – A Modern React UI Component Library & CLI Tool",
-    //   date: "08.10.2025",
-    //   image: "./image.png",
-    //   link: "/blog/uivault",
-    //   badge: "New",
-    // },
+    {
+      title: "My Tech Skill Journey — From Curiosity to Fullstack Engineering",
+      date: "23.08.2026",
+      image:
+        "https://images.unsplash.com/photo-1555066931-4365d14bab8c?fm=jpg&q=60&w=3000&auto=format&fit=crop",
+      link: "/blog/tech-journey",
+      badge: "New",
+    },
+    {
+      title: "Building UIVault – A Modern React UI Component Library & CLI Tool",
+      date: "08.10.2025",
+      image: "./image.png",
+      link: "/blog/uivault",
+    },
     {
       title: "Tips for Creating Beautiful Image Borders",
       date: "13.09.2025",

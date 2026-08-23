@@ -57,6 +57,13 @@ export default function TopNavbar({ darkMode, setDarkMode, searchOpen, setSearch
           {/* Search */}
 
           <nav className="hidden sm:flex items-center gap-6 title">
+            {/* <Link
+              to="/story"
+              className={`hover:text-gray-400 ${darkMode ? "text-white" : "text-zinc-600"
+                }`}
+            >
+              Story
+            </Link> */}
             <Link
               to="/blog"
               className={`hover:text-gray-400 ${darkMode ? "text-white" : "text-zinc-600"
@@ -159,6 +166,14 @@ export default function TopNavbar({ darkMode, setDarkMode, searchOpen, setSearch
             : "bg-white border border-zinc-200"
             }`}
         >
+          <Link
+            to="/story"
+            className={`py-2 px-4 w-full text-left title hover:bg-zinc-700 rounded-md ${darkMode ? "text-white" : "text-black"
+              }`}
+            onClick={() => setMenuOpen(false)}
+          >
+            Story
+          </Link>
           <Link
             to="/blog"
             className={`py-2 px-4 w-full text-left title hover:bg-zinc-700 rounded-md ${darkMode ? "text-white" : "text-black"
