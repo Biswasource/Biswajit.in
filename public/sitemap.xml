@@ -5,16 +5,8 @@
     <loc>https://biswajitdev.site/</loc>
   </url>
 
-  <url>
-    <loc>https://biswajitdev.site/about</loc>
-  </url>
-
-  <url>
-    <loc>https://biswajitdev.site/projects</loc>
-  </url>
-
-  <url>
-    <loc>https://biswajitdev.site/contact</loc>
+    <url>
+    <loc>https://biswajitdev.site/blog</loc>
   </url>
 
 </urlset>
