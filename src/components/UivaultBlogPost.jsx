@@ -9,6 +9,7 @@ import StripedDivider from "./StripedDivider";
 import TopNavbar from "./TopNavbar";
 import SearchDialog from "./SearchDialog";
 import Footer from "./Footer";
+import SEO from "./SEO";
 
 export default function UIvaultBlogPost() {
   const [darkMode, setDarkMode] = useState(false);
@@ -25,6 +26,11 @@ export default function UIvaultBlogPost() {
       className={`min-h-screen ${darkMode ? "bg-black text-white" : "bg-white text-gray-900"
         }`}
     >
+      <SEO 
+        title="Building UIVault" 
+        description="A deep dive into building UIVault – A Modern React UI Component Library & CLI Tool that crossed 11,000 active users."
+        image={cover1}
+      />
       <TopNavbar
         darkMode={darkMode}
         setDarkMode={setDarkMode}

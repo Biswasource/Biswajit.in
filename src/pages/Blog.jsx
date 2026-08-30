@@ -8,6 +8,7 @@ import { FaSearch } from "react-icons/fa";
 import HorizontalDivider from "../components/HorizontalDivider";
 import StripedDivider from "../components/StripedDivider";
 import Footer from "../components/Footer";
+import SEO from "../components/SEO";
 
 export default function Blog() {
   const [darkMode, setDarkMode] = useState(false);
@@ -59,6 +60,10 @@ export default function Blog() {
       className={`min-h-screen ${darkMode ? "bg-black text-white" : "bg-white text-gray-900"
         }`}
     >
+      <SEO 
+        title="Blog" 
+        description="Read the latest articles from Biswajit Das about web development, design, and engineering."
+      />
       {/* Shared Navbar */}
       <TopNavbar
         darkMode={darkMode}

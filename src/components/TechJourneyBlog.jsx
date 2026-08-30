@@ -6,6 +6,7 @@ import StripedDivider from "./StripedDivider";
 import TopNavbar from "./TopNavbar";
 import SearchDialog from "./SearchDialog";
 import Footer from "./Footer";
+import SEO from "./SEO";
 
 export default function TechJourneyBlog() {
   const [darkMode, setDarkMode] = useState(false);
@@ -22,6 +23,11 @@ export default function TechJourneyBlog() {
       className={`min-h-screen ${darkMode ? "bg-black text-white" : "bg-white text-gray-900"
         }`}
     >
+      <SEO 
+        title="My Tech Skill Journey" 
+        description="From Curiosity to Full-Stack Engineering. The story of how my technical skill set evolved."
+        image="https://images.unsplash.com/photo-1555066931-4365d14bab8c?fm=jpg&q=60&w=3000&auto=format&fit=crop"
+      />
       <TopNavbar
         darkMode={darkMode}
         setDarkMode={setDarkMode}

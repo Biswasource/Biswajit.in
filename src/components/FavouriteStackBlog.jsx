@@ -11,6 +11,7 @@ import StripedDivider from "./StripedDivider";
 import TopNavbar from "./TopNavbar";
 import SearchDialog from "./SearchDialog";
 import Footer from "./Footer";
+import SEO from "./SEO";
 
 export default function FavStackBlogPost() {
   const [darkMode, setDarkMode] = useState(false);
@@ -30,6 +31,11 @@ export default function FavStackBlogPost() {
       className={`min-h-screen ${darkMode ? "bg-black text-white" : "bg-white text-gray-900"
         }`}
     >
+      <SEO 
+        title="My Favorite Developer Stack" 
+        description="Exploring my go-to tech stack: Shadcn UI, Framer Motion, React Icons, MongoDB, and Supabase."
+        image={shadcn}
+      />
       <TopNavbar
         darkMode={darkMode}
         setDarkMode={setDarkMode}
