@@ -4,6 +4,12 @@ import { FiChevronDown, FiChevronUp } from "react-icons/fi";
 import { motion, AnimatePresence } from "framer-motion";
 import HorizontalDivider from "../components/HorizontalDivider";
 import StripedDivider from "../components/StripedDivider";
+import { IoIosLink } from "react-icons/io";
+import { FaLink } from "react-icons/fa6";
+import { BsChevronExpand } from "react-icons/bs";
+import { BsChevronDown } from "react-icons/bs"
+import { LuChevronsDownUp } from "react-icons/lu";
+import { LuChevronsUpDown } from "react-icons/lu";
 
 export default function ProjectSection({ darkMode }) {
   const [expandedIdxs, setExpandedIdxs] = useState([0, 1, 2, 3]);
@@ -39,14 +45,10 @@ export default function ProjectSection({ darkMode }) {
         "Online Assessment",
       ],
       links: [
+
         {
-          icon: <FaGithub />,
-          url: "https://github.com/yourusername/hireset",
-          tooltip: "GitHub",
-        },
-        {
-          icon: <FaExternalLinkAlt />,
-          url: "https://hireset.com",
+          icon: <FaLink />,
+          url: "https://hireset.biswajitdev.site",
           tooltip: "Live Demo",
         },
       ],
@@ -70,14 +72,10 @@ export default function ProjectSection({ darkMode }) {
         "Accessibility",
       ],
       links: [
+
         {
-          icon: <FaGithub />,
-          url: "https://github.com/yourrepo/uivault",
-          tooltip: "GitHub",
-        },
-        {
-          icon: <FaExternalLinkAlt />,
-          url: "https://uivault.dev",
+          icon: <FaLink />,
+          url: "https://uivault.biswajitdev.site",
           tooltip: "Live Demo",
         },
       ],
@@ -101,18 +99,43 @@ export default function ProjectSection({ darkMode }) {
         "Form Builder",
       ],
       links: [
+
         {
-          icon: <FaGithub />,
-          url: "https://github.com/yourusername/formhub",
-          tooltip: "GitHub",
-        },
-        {
-          icon: <FaExternalLinkAlt />,
-          url: "https://formhub.yourdomain.com",
+          icon: <FaLink />,
+          url: "https://formhub.biswajitdev.site",
           tooltip: "Live Demo",
         },
       ],
     },
+    {
+      name: "TaskFlow",
+      logo: "./taskflow.png",
+      duration: "08.2026 — 09.2026",
+      description: [
+        "Developed a collaborative Todo and task management application to help users organize, track, and manage tasks efficiently.",
+        "Implemented Kanban boards, calendar-based task planning, and task management features for better productivity.",
+        "Added real-time collaboration features allowing users to create and manage tasks together with friends.",
+      ],
+      tags: [
+        "React.js",
+        "Firebase",
+        "Tailwind CSS",
+        "shadcn/ui",
+        "Todo Management",
+        "Kanban Board",
+        "Calendar",
+        "Real-time Collaboration",
+      ],
+      links: [
+
+        {
+          icon: <FaLink />,
+          url: "https://todo.biswajitdev.site",
+          tooltip: "Live Demo",
+        },
+      ],
+    },
+
 
     {
       name: "WebbyAI",
@@ -133,49 +156,15 @@ export default function ProjectSection({ darkMode }) {
         "Real-time Deployment",
       ],
       links: [
+
         {
-          icon: <FaGithub />,
-          url: "https://github.com/yourrepo/uivault",
-          tooltip: "GitHub",
-        },
-        {
-          icon: <FaExternalLinkAlt />,
+          icon: <FaLink />,
           url: "https://uivault.dev",
           tooltip: "Live Demo",
         },
       ],
     },
-    {
-      name: "Code Saver",
-      logo: "./quaricdotcom.svg",
-      duration: "04.2025 — 05.2025",
-      description: [
-        "Developed a full-featured code snippet manager for developers to save, organize, and share code efficiently.",
-        "Implemented syntax highlighting, categorization, and tagging of snippets for quick retrieval.",
-        "Created public and private sharing options with commenting and collaboration capabilities.",
-      ],
-      tags: [
-        "React.js",
-        "Node.js",
-        "MongoDB",
-        "Tailwind CSS",
-        "Code Editor",
-        "Real-time Editing",
-        "Collaboration",
-      ],
-      links: [
-        {
-          icon: <FaGithub />,
-          url: "https://github.com/yourrepo/uivault",
-          tooltip: "GitHub",
-        },
-        {
-          icon: <FaExternalLinkAlt />,
-          url: "https://uivault.dev",
-          tooltip: "Live Demo",
-        },
-      ],
-    },
+
     {
       name: "MVC Set NPM Package",
       logo: "https://media2.dev.to/dynamic/image/width=1080,height=1080,fit=cover,gravity=auto,format=auto/https%3A%2F%2Fdev-to-uploads.s3.amazonaws.com%2Fuploads%2Farticles%2F3ihn9bj79g3iyv96c38b.png",
@@ -196,14 +185,10 @@ export default function ProjectSection({ darkMode }) {
         "Middleware",
       ],
       links: [
+
         {
-          icon: <FaGithub />,
-          url: "https://github.com/yourrepo/uivault",
-          tooltip: "GitHub",
-        },
-        {
-          icon: <FaExternalLinkAlt />,
-          url: "https://uivault.dev",
+          icon: <FaLink />,
+          url: "https://www.npmjs.com/package/mvcset/v/1.0.6",
           tooltip: "Live Demo",
         },
       ],
@@ -310,16 +295,25 @@ export default function ProjectSection({ darkMode }) {
                             ))}
                           </div>
 
-                          <motion.div
-                            animate={{ rotate: isExpanded ? 180 : 0 }}
-                            transition={{ duration: 0.3 }}
-                          >
-                            {isExpanded ? (
-                              <FiChevronUp size={20} />
-                            ) : (
-                              <FiChevronDown size={20} />
-                            )}
-                          </motion.div>
+                          <div className="relative w-5 h-5 flex items-center justify-center">
+                            <AnimatePresence mode="wait">
+                              <motion.div
+                                key={isExpanded ? "expanded" : "collapsed"}
+                                initial={{ opacity: 0, y: isExpanded ? -5 : 5 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                exit={{ opacity: 0, y: isExpanded ? 5 : -5 }}
+                                transition={{ duration: 0.2 }}
+                                className="absolute"
+                              >
+                                {isExpanded ? (
+                                  <LuChevronsDownUp size={20} />
+                                ) : (
+                                  <LuChevronsUpDown size={20} />
+                                )}
+                              </motion.div>
+                            </AnimatePresence>
+                          </div>
+
                         </div>
                       </div>
                     </div>

@@ -10,11 +10,10 @@ function GithubContribution({ darkMode }) {
       </div>
       <div className="w-full px-4 sm:px-6 flex justify-center">
         <div
-          className={`w-full max-w-3xl border-l border-r ${
-            darkMode
-              ? "bg-black text-gray-200 border-zinc-800"
-              : "bg-white text-gray-900 border-gray-300"
-          } pt-6 pb-2 px-4 sm:px-4 md:px-4 flex flex-col items-center justify-center relative title`}
+          className={`w-full max-w-3xl border-l border-r ${darkMode
+            ? "bg-black text-gray-200 border-zinc-800"
+            : "bg-white text-gray-900 border-gray-300"
+            } pt-6 pb-2 px-4 sm:px-4 md:px-4 flex flex-col items-center justify-center relative title`}
         >
           {/* Horizontal scroll */}
           <div
@@ -24,10 +23,10 @@ function GithubContribution({ darkMode }) {
               touchAction: "pan-x",
             }}
           >
-            <div className="text-center min-w-[720px]">
+            <div className="text-center min-w-[730px]">
               <GitHubCalendar
                 username="Biswasource"
-                blockSize={11}
+                blockSize={10}
                 blockMargin={3}
                 colorScheme={darkMode ? "dark" : "light"}
               />

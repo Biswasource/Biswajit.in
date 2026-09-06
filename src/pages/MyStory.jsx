@@ -58,8 +58,8 @@ export default function MyStory() {
       className={`min-h-screen ${darkMode ? "bg-black text-white" : "bg-white text-gray-900"
         }`}
     >
-      <SEO 
-        title="My Story" 
+      <SEO
+        title="My Story"
         description="Learn about the journey and experiences of Biswajit Das as a Full Stack Developer and creator."
       />
       <TopNavbar

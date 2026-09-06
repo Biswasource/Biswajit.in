@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { FaGraduationCap, FaExternalLinkAlt } from "react-icons/fa";
 import { FiChevronDown, FiChevronUp } from "react-icons/fi";
+import { LuChevronsDownUp, LuChevronsUpDown } from "react-icons/lu";
 import { motion, AnimatePresence } from "framer-motion";
 import HorizontalDivider from "../components/HorizontalDivider";
 import StripedDivider from "../components/StripedDivider";
@@ -18,7 +19,28 @@ export default function EducationSection({ darkMode }) {
 
   const education = [
     {
-      year: "2026 (Expected)",
+      // MCA
+      year: "2026 — 2028 | Master's Degree",
+      degree: "MCA – Silicon University",
+      logo: "https://www.vidyavision.com/CollegeUploads/Logos/2024-07-11-17-31-59_silicon-logo.png", // optional logo
+      description: [
+        "Pursuing an MCA with a focus on software development, data structures, and emerging technologies.",
+        "Strengthening problem-solving skills through Data Structures and Algorithms (DSA).",
+        "Exploring Artificial Intelligence and Machine Learning through academic and practical projects.",
+        // "Building full-stack applications using modern web technologies and frameworks.",
+        "Continuously improving technical skills through projects, coding, and hands-on learning.",
+      ],
+      tags: [
+        "DSA",
+        "AI/ML",
+        "TypeScript",
+        "React Native",
+        "Next.js",
+        "MERN Stack",
+      ],
+    },
+    {
+      year: "2023 — 2026 | Bachelor's Degree",
       degree: "BCA – Lakhsya Institute of Technology",
       logo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSEVCi0cIbHNn5USlQOPrA0AK0O_hMFCTyOVg&s", // optional logo
       description: [
@@ -31,7 +53,8 @@ export default function EducationSection({ darkMode }) {
       tags: ["MERN Stack", "Firebase", "TypeScript", "React Native", "Next.js"],
     },
     {
-      year: "2022",
+      // 12th
+      year: "2021 — 2023 | Higher Secondary Education",
       degree: "12th – Stewart Science College, Cuttack",
       logo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRETla9juCXBUTQbjasro9lCkMCqPGP8MJ97dXSWm8FsphQtqzV5CggiZbiKarWt5MfQkc&usqp=CAU",
       description: [
@@ -42,7 +65,8 @@ export default function EducationSection({ darkMode }) {
       tags: ["Mathematics", "Physics", "Biology", "Sports"],
     },
     {
-      year: "2020",
+      // 10th
+      year: "2020 | Secondary Education",
       degree: "10th – Saraswati Sishu Vidya Mandir",
       logo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQoIJwKqpInw1k28npeTKvm1jPizH8nI4Y59Q&s",
       description: [
@@ -111,22 +135,30 @@ export default function EducationSection({ darkMode }) {
                         </div>
                       </div>
 
-                      <motion.div
-                        animate={{ rotate: isExpanded ? 180 : 0 }}
-                        transition={{ duration: 0.3 }}
-                      >
-                        {isExpanded ? (
-                          <FiChevronUp
-                            size={20}
-                            className={darkMode ? "text-white" : "text-gray-900"}
-                          />
-                        ) : (
-                          <FiChevronDown
-                            size={20}
-                            className={darkMode ? "text-white" : "text-gray-900"}
-                          />
-                        )}
-                      </motion.div>
+                      <div className="relative w-5 h-5 flex items-center justify-center">
+                        <AnimatePresence mode="wait">
+                          <motion.div
+                            key={isExpanded ? "expanded" : "collapsed"}
+                            initial={{ opacity: 0, y: isExpanded ? -5 : 5 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            exit={{ opacity: 0, y: isExpanded ? 5 : -5 }}
+                            transition={{ duration: 0.2 }}
+                            className="absolute"
+                          >
+                            {isExpanded ? (
+                              <LuChevronsDownUp
+                                size={20}
+                                className={darkMode ? "text-white" : "text-gray-900"}
+                              />
+                            ) : (
+                              <LuChevronsUpDown
+                                size={20}
+                                className={darkMode ? "text-white" : "text-gray-900"}
+                              />
+                            )}
+                          </motion.div>
+                        </AnimatePresence>
+                      </div>
                     </div>
                   </div>
 

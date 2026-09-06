@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { FaCode } from "react-icons/fa";
 import { FiChevronDown, FiChevronUp } from "react-icons/fi";
+import { LuChevronsDownUp, LuChevronsUpDown } from "react-icons/lu";
 import { motion, AnimatePresence } from "framer-motion";
 import HorizontalDivider from "../components/HorizontalDivider";
 
@@ -121,16 +122,24 @@ export default function Experience({ darkMode }) {
                       <p className="text-sm title">{exp.duration}</p>
                     </div>
                     {/* Expand/Collapse Icon */}
-                    <motion.div
-                      animate={{ rotate: isExpanded ? 180 : 0 }}
-                      transition={{ duration: 0.3 }}
-                    >
-                      {isExpanded ? (
-                        <FiChevronUp size={20} />
-                      ) : (
-                        <FiChevronDown size={20} />
-                      )}
-                    </motion.div>
+                    <div className="relative w-5 h-5 flex items-center justify-center">
+                      <AnimatePresence mode="wait">
+                        <motion.div
+                          key={isExpanded ? "expanded" : "collapsed"}
+                          initial={{ opacity: 0, y: isExpanded ? -5 : 5 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          exit={{ opacity: 0, y: isExpanded ? 5 : -5 }}
+                          transition={{ duration: 0.2 }}
+                          className="absolute"
+                        >
+                          {isExpanded ? (
+                            <LuChevronsDownUp size={20} />
+                          ) : (
+                            <LuChevronsUpDown size={20} />
+                          )}
+                        </motion.div>
+                      </AnimatePresence>
+                    </div>
                   </div>
                 </div>
 

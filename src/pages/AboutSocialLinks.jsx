@@ -60,7 +60,7 @@ const AboutSocialLinks = ({ darkMode }) => {
       I’m also passionate about open-source development and UI engineering,
       currently building{" "}
       <a
-        href="#"
+        href="uivault.biswajitdev.site"
         className={`font-semibold underline underline-offset-3 ${darkMode ? "text-white" : "text-black"
           }`}
       >
@@ -69,7 +69,7 @@ const AboutSocialLinks = ({ darkMode }) => {
       — a CLI for developers to quickly add themed React components with
       IntelliSense support. I’ve also published{" "}
       <a
-        href="#"
+        href="https://www.npmjs.com/package/mvcset/v/1.0.6"
         className={`font-semibold underline underline-offset-3 ${darkMode ? "text-white" : "text-black"
           }`}
       >

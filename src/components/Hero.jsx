@@ -49,16 +49,33 @@ const SkillTag = ({ icon, name, darkMode }) => (
 );
 
 const InfoItem = ({ icon, text, darkMode, className, href }) => {
+  let content = <span className="truncate">{text}</span>;
+  let underline = href ? (
+    <span className="absolute -bottom-0.5 left-0 w-full h-[1px] bg-current origin-left scale-x-0 transition-transform duration-300 ease-out group-hover:scale-x-100" />
+  ) : null;
+
+  if (href && typeof text === "string" && text.includes(" @")) {
+    const [prefix, suffix] = text.split(" @");
+    content = (
+      <span className="whitespace-nowrap">
+        {prefix}{" "}
+        <span className="relative inline-block">
+          @{suffix}
+          <span className="absolute -bottom-0.5 left-0 w-full h-[1px] bg-current origin-left scale-x-0 transition-transform duration-300 ease-out group-hover:scale-x-100" />
+        </span>
+      </span>
+    );
+    underline = null;
+  }
+
   const inner = (
     <>
       <div className={`flex-shrink-0 flex items-center justify-center w-7 h-7 rounded-md border transition-colors ${darkMode ? "bg-zinc-900 border-zinc-800 text-white group-hover:border-zinc-700" : "bg-zinc-50 border-zinc-200 text-black group-hover:border-zinc-300"}`}>
         {icon}
       </div>
-      <span className={`relative inline-block text-[13px] tracking-tight truncate ${darkMode ? "text-white" : "text-black"} ${className || "font-mono"}`}>
-        {text}
-        {href && (
-          <span className="absolute -bottom-0.5 left-0 w-full h-[1px] bg-current origin-left scale-x-0 transition-transform duration-300 ease-out group-hover:scale-x-100" />
-        )}
+      <span className={`relative flex flex-col justify-center text-[13px] tracking-tight ${darkMode ? "text-white" : "text-black"} ${className || "font-mono"}`}>
+        {content}
+        {underline}
       </span>
     </>
   );
@@ -246,19 +263,20 @@ const Hero = ({ darkMode }) => {
                 {/* Grid */}
                 {/* Grid */}
                 <div className="grid grid-cols-1 sm:grid-cols-[auto_auto] justify-start gap-y-3 sm:gap-y-2 gap-x-32 py-2 px-0 mr-24">
-                  <InfoItem icon={<FaCode size={13} />} text="Backend Developer @shadcncraft" className="title" darkMode={darkMode} />
+                  <InfoItem icon={<FaCode size={13} />} text="Backend Developer @Meviia" href="https://meviia.com.au" className="title" darkMode={darkMode} />
                   <div className="hidden sm:block" />
 
-                  <InfoItem icon={<FaLightbulb size={13} />} text="Founder @Uivault" href="https://uivault.in" className="title" darkMode={darkMode} />
+                  <InfoItem icon={<FaLightbulb size={13} />} text="Founder @Uivault" href="https://uivault.biswajitdev.site" className="title" darkMode={darkMode} />
                   <div className="hidden sm:block" />
 
                   <InfoItem icon={<FaMapMarkerAlt size={13} />} text="Cuttack, Odisha" className="title" darkMode={darkMode} />
+
                   <InfoItem icon={<FaRegClock size={13} />} text={timeStr || "Loading..."} className="title" darkMode={darkMode} />
 
                   <InfoItem icon={<FaEnvelope size={13} />} text="biswajit9348das@gmail.com" href="mailto:biswajit9348das@gmail.com" className="title" darkMode={darkMode} />
                   <div className="hidden sm:block" />
 
-                  <InfoItem icon={<FaLink size={13} />} text="biswajit.uivault.in" href="https://biswajit.uivault.in" className="title" darkMode={darkMode} />
+                  <InfoItem icon={<FaLink size={13} />} text="biswajitdev.site" href="https://biswajitdev.site" className="title" darkMode={darkMode} />
                   <InfoItem icon={<BsGenderMale size={13} />} text="he/him" className="title" darkMode={darkMode} />
                 </div>
                 <div className="w-[100vw] relative left-[50%] right-[50%] -ml-[50vw] -mr-[50vw] my-4">
