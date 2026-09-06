@@ -25,7 +25,7 @@ export default function Experience({ darkMode }) {
       description: [
         "Worked on multiple SaaS-based platforms, developing and maintaining scalable backend systems.",
         "Developed scalable RESTful APIs using Node.js and Express for salon operations.",
-        "Implemented CI/CD pipelines with Jenkins for automated builds and deployments.",
+        // "Implemented CI/CD pipelines with Jenkins for automated builds and deployments.",
         "Managed databases including MongoDB and PostgreSQL, ensuring data integrity.",
       ],
     },
@@ -38,7 +38,7 @@ export default function Experience({ darkMode }) {
         "Worked on multiple client projects, building responsive and interactive web applications.",
         "Implemented end-to-end solutions using MERN stack, integrating APIs and databases.",
         "Collaborated with clients to understand requirements and deliver custom solutions.",
-        "Optimized websites for SEO and performance using Next.js and Tailwind CSS.",
+        // "Optimized websites for SEO and performance using Next.js and Tailwind CSS.",
       ],
     },
   ];

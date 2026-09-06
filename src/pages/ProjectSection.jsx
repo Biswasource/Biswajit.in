@@ -28,9 +28,9 @@ export default function ProjectSection({ darkMode }) {
       logo: "./hireset.png",
       duration: "06.2025 — Present",
       description: [
-        "Developed a secure online assessment platform that enables organizations and institutes to conduct coding and aptitude tests remotely.",
-        "Built role-based Admin and Student dashboards with real-time test monitoring, result generation, and candidate management.",
-        "Integrated WebRTC-powered live proctoring with screen sharing, webcam monitoring, and anti-cheating features to ensure a strict online examination environment.",
+        "Built a secure online assessment platform for coding and aptitude tests.",
+        "Created Admin and Student dashboards with real-time monitoring and result management.",
+        "Integrated WebRTC proctoring with webcam and screen monitoring for secure exams.",
       ],
       tags: [
         "React.js",
@@ -60,7 +60,7 @@ export default function ProjectSection({ darkMode }) {
       description: [
         "Developed a comprehensive React UI component library that supports multiple themes, including dark, light, and custom variations.",
         "Implemented a flexible theming system with JSX & TSX support, allowing developers to import components seamlessly in any project.",
-        "Created a CLI tool to add and scaffold components dynamically, improving development efficiency.",
+        // "Created a CLI tool to add and scaffold components dynamically, improving development efficiency.",
       ],
       tags: [
         "React.js",
@@ -85,9 +85,9 @@ export default function ProjectSection({ darkMode }) {
       logo: "./formhub.png",
       duration: "05.2025 — Present",
       description: [
-        "Developed a full-stack form builder platform that enables users to create, publish, and manage custom forms without coding.",
-        "Implemented drag-and-drop form creation, real-time response collection, and analytics dashboard for tracking submissions.",
-        "Integrated secure authentication, MongoDB database management, and responsive UI for seamless form creation across devices.",
+        "Built a full-stack no-code form builder for creating and managing custom forms.",
+        "Implemented drag-and-drop form creation, response collection, and submission analytics.",
+        "Added secure authentication, MongoDB integration, and responsive UI across devices.",
       ],
       tags: [
         "Next.js",
@@ -112,9 +112,9 @@ export default function ProjectSection({ darkMode }) {
       logo: "./taskflow.png",
       duration: "08.2026 — 09.2026",
       description: [
-        "Developed a collaborative Todo and task management application to help users organize, track, and manage tasks efficiently.",
-        "Implemented Kanban boards, calendar-based task planning, and task management features for better productivity.",
-        "Added real-time collaboration features allowing users to create and manage tasks together with friends.",
+        "Built a collaborative Todo and task management app for efficient task organization and tracking.",
+        "Implemented Kanban boards, calendar view, and task management features to boost productivity.",
+        "Added real-time collaboration so users can create and manage tasks together seamlessly.",
       ],
       tags: [
         "React.js",
