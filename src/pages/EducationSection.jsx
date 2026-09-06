@@ -121,13 +121,13 @@ export default function EducationSection({ darkMode }) {
                         )}
                         <div>
                           <h2
-                            className={`text-[17.5px] font-bold cl ${darkMode ? "text-white" : "text-gray-900"
+                            className={`text-[15.7px] sm:text-[17px] font-bold cl ${darkMode ? "text-white" : "text-gray-900"
                               }`}
                           >
                             {edu.degree}
                           </h2>
                           <p
-                            className={`text-sm cl cursor-pointer ${darkMode ? "text-gray-400" : "text-gray-600"
+                            className={`text-xs sm:text-sm title cursor-pointer ${darkMode ? "text-gray-400" : "text-gray-600"
                               }`}
                           >
                             {edu.year}
