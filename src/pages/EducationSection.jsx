@@ -28,7 +28,7 @@ export default function EducationSection({ darkMode }) {
         "Strengthening problem-solving skills through Data Structures and Algorithms (DSA).",
         "Exploring Artificial Intelligence and Machine Learning through academic and practical projects.",
         // "Building full-stack applications using modern web technologies and frameworks.",
-        "Continuously improving technical skills through projects, coding, and hands-on learning.",
+        // "Continuously improving technical skills through projects, coding, and hands-on learning.",
       ],
       tags: [
         "DSA",
