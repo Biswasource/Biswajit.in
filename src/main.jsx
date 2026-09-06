@@ -9,6 +9,7 @@ import MyStory from "./pages/MyStory.jsx";
 import UIvaultBlogPost from "./components/UivaultBlogPost.jsx";
 import FavStackBlogPost from "./components/FavouriteStackBlog.jsx";
 import TechJourneyBlog from "./components/TechJourneyBlog.jsx";
+import Resume from "./pages/Resume.jsx";
 
 // from "./pages/Home.jsx"; // Optional: your main homepage
 
@@ -23,6 +24,7 @@ createRoot(document.getElementById("root")).render(
           <Route path="/blog/uivault" element={<UIvaultBlogPost />} />
           <Route path="/blog/favstack" element={<FavStackBlogPost />} />
           <Route path="/blog/tech-journey" element={<TechJourneyBlog />} />
+          <Route path="/resume" element={<Resume />} />
           <Route path="*" element={<h1>404 - Page Not Found</h1>} />{" "}
           {/* optional */}
         </Routes>

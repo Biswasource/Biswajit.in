@@ -1,7 +1,41 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { FaEye, FaQuoteLeft } from "react-icons/fa";
+import { supabase } from "../supabaseClient";
 
 const Footer = ({ darkMode }) => {
+  const [visitorCount, setVisitorCount] = useState(null);
+
+  useEffect(() => {
+    const updateAndFetchCount = async () => {
+      try {
+        // Only increment once per session to avoid double counting on reloads
+        const hasVisited = sessionStorage.getItem("hasVisited");
+
+        if (!hasVisited) {
+          await supabase.rpc("increment_page_view");
+          sessionStorage.setItem("hasVisited", "true");
+        }
+
+        // Fetch the up-to-date count
+        const { data, error } = await supabase
+          .from("page_views")
+          .select("count")
+          .eq("id", 1)
+          .single();
+
+        if (data && !error) {
+          setVisitorCount(data.count);
+        }
+      } catch (err) {
+        console.error("Failed to fetch visitor count", err);
+      }
+    };
+
+    updateAndFetchCount();
+  }, []);
+
+  const displayCount = visitorCount ? visitorCount.toLocaleString() : "31,137";
+
   return (
     <footer className={`w-full py-20 font-['Inter',_sans-serif] ${darkMode ? "bg-black text-white" : "bg-white text-zinc-800"}`}>
       <div className="max-w-5xl mx-auto md:px-20">
@@ -33,7 +67,7 @@ const Footer = ({ darkMode }) => {
               <FaEye className={darkMode ? "text-zinc-300" : "text-zinc-400"} />
             </div>
             <p className="text-[15px] font-medium">
-              You are the <span className={`font-bold ${darkMode ? "text-white" : "text-zinc-900"}`}>31,137th</span> visitor
+              You are the <span className={`font-bold ${darkMode ? "text-white" : "text-zinc-900"}`}>{displayCount}th</span> visitor
             </p>
           </div>
         </div>

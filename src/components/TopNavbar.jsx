@@ -71,13 +71,13 @@ export default function TopNavbar({ darkMode, setDarkMode, searchOpen, setSearch
             >
               Blog
             </Link>
-            <a
-              href="#"
+            <Link
+              to="/resume"
               className={`hover:text-gray-400 ${darkMode ? "text-white" : "text-zinc-600"
                 }`}
             >
-              Components
-            </a>
+              Resume
+            </Link>
           </nav>
           <div
             onClick={() => setSearchOpen(true)}
@@ -182,14 +182,14 @@ export default function TopNavbar({ darkMode, setDarkMode, searchOpen, setSearch
           >
             Blog
           </Link>
-          <a
-            href="#"
+          <Link
+            to="/resume"
             className={`py-2 px-4 w-full text-left title hover:bg-zinc-700 rounded-md ${darkMode ? "text-white" : "text-black"
               }`}
             onClick={() => setMenuOpen(false)}
           >
-            Components
-          </a>
+            Resume
+          </Link>
         </div>
       )}
     </header>
